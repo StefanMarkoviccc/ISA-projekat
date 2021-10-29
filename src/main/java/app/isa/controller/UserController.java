@@ -49,6 +49,18 @@ public class UserController {
         return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
     }
 
+    @PostMapping(path = "/fishing-instructor")
+    public ResponseEntity<UserDTO> registerFishingInstructor(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.FISHING_INSTRUCTOR);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
     @PostMapping(path = "/boat-owner")
     public ResponseEntity<UserDTO> registerBoatOwner(@RequestBody RegistrationDTO registrationDTO) {
 
@@ -65,6 +77,18 @@ public class UserController {
     public ResponseEntity<UserDTO> registerInstructor(@RequestBody RegistrationDTO registrationDTO) {
 
         User user = userService.register(registrationDTO, UserType.INSTRUCTOR);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/administrator")
+    public ResponseEntity<UserDTO> registerAdministrator(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.ADMINISTRATOR);
 
         if(user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

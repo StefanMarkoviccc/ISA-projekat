@@ -1,5 +1,5 @@
 package app.isa.domain.model;
 
 public enum UserType {
-    HOUSE_OWNER, BOAT_OWNER, INSTRUCTOR
+    HOUSE_OWNER, BOAT_OWNER, INSTRUCTOR, FISHING_INSTRUCTOR, ADMINISTRATOR
 }
