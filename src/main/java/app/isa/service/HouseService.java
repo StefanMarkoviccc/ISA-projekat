@@ -10,5 +10,6 @@ public interface HouseService {
     List<House> getList();
     House getHouse(Long id);
     House edit(Long id, HouseDTO houseDTO);
+    House add(HouseDTO houseDTO);
     boolean deleted(Long id);
 }
