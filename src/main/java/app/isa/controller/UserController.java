@@ -37,6 +37,30 @@ public class UserController {
         return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.OK);
     }
 
+    @PostMapping(path = "/not-registered")
+    public ResponseEntity<UserDTO> registerNotRegistered(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.NOT_REGISTERED);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/client")
+    public ResponseEntity<UserDTO> registerClient(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.CLIENT);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
     @PostMapping(path = "/house-owner")
     public ResponseEntity<UserDTO> registerHouseOwner(@RequestBody RegistrationDTO registrationDTO) {
 
