@@ -37,10 +37,46 @@ public class UserController {
         return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.OK);
     }
 
+    @PostMapping(path = "/not-registered")
+    public ResponseEntity<UserDTO> registerNotRegistered(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.NOT_REGISTERED);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/client")
+    public ResponseEntity<UserDTO> registerClient(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.CLIENT);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
     @PostMapping(path = "/house-owner")
     public ResponseEntity<UserDTO> registerHouseOwner(@RequestBody RegistrationDTO registrationDTO) {
 
         User user = userService.register(registrationDTO, UserType.HOUSE_OWNER);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/fishing-instructor")
+    public ResponseEntity<UserDTO> registerFishingInstructor(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.FISHING_INSTRUCTOR);
 
         if(user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -65,6 +101,18 @@ public class UserController {
     public ResponseEntity<UserDTO> registerInstructor(@RequestBody RegistrationDTO registrationDTO) {
 
         User user = userService.register(registrationDTO, UserType.INSTRUCTOR);
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/administrator")
+    public ResponseEntity<UserDTO> registerAdministrator(@RequestBody RegistrationDTO registrationDTO) {
+
+        User user = userService.register(registrationDTO, UserType.ADMINISTRATOR);
 
         if(user == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
