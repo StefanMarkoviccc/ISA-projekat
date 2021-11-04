@@ -10,11 +10,18 @@ import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import app.isa.domain.model.Appointement;
+import app.isa.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Optional;
 
+
 @Service
-public class AppointmentServiceImplementation {
+public class AppointmentServiceImplementation implements AppointmentService{
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -34,15 +41,36 @@ public class AppointmentServiceImplementation {
         return appointmentRepository.save(appointement);
     }
 
-    public  boolean deleted(Long id){
+    public  boolean deleted(Long id) {
         Optional<Appointement> appointement = appointmentRepository.findOne(id);
 
-        if(appointement.isEmpty()){
-            return  false;
+        if (appointement.isEmpty()) {
+            return false;
         }
 
         appointement.get().setDeleted(true);
         appointmentRepository.save(appointement.get());
-        return  true;
+        return true;
+    }
+    @Override
+    public List<Appointement> getList() {
+        return  appointmentRepository.getAll();
+    }
+
+    @Override
+    public Appointement getAppointment(Long id) {
+
+        Optional<Appointement> appointement = appointmentRepository.findOne(id);
+
+        if(appointement.isEmpty()){
+            return null;
+        }
+
+        return appointement.get();
+    }
+
+    @Override
+    public Appointement edit(Long id, AppointmentDTO appointmentDTO) {
+        return null;
     }
 }

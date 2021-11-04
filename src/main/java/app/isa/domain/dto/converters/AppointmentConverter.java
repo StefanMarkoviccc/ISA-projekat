@@ -5,10 +5,12 @@ import app.isa.domain.model.Appointement;
 import app.isa.domain.model.House;
 import app.isa.repository.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppointmentConverter {
 
-    public  static Appointement fromDTO(AppointmentDTO appointmentDTO){
+    public static Appointement fromDTO(AppointmentDTO appointmentDTO) {
 
         Appointement appointment = new Appointement();
         appointment.setId(appointmentDTO.getId());
@@ -36,5 +38,13 @@ public class AppointmentConverter {
         appointmentDTO.setPrice(appointment.getPrice());
 
         return appointmentDTO;
+    }
+
+    public static List<AppointmentDTO> toDTOList(List<Appointement> appointements){
+        ArrayList<AppointmentDTO> appointmentDTOList = new ArrayList<AppointmentDTO>();
+        for(Appointement appointement : appointements){
+            appointmentDTOList.add(toDTO(appointement));
+        }
+        return  appointmentDTOList;
     }
 }
