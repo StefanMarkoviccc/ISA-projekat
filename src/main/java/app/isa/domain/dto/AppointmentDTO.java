@@ -7,9 +7,9 @@ import java.util.Date;
 
 public class AppointmentDTO extends BaseDTO{
 
-    protected House house;
+    protected Long houseId;
 
-    protected Room room;
+    protected Long roomId;
 
     protected Date date;
 

@@ -11,8 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class HouseDTO extends BaseDTO{
 
-    protected User houseOwner;
-
     protected String name;
 
     protected String address;

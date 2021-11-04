@@ -8,5 +8,5 @@ public class RoomDTO extends BaseDTO{
 
     protected int numberOfBeds;
 
-    protected House house;
+    protected Long  houseId;
 }

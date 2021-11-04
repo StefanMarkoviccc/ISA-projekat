@@ -4,15 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Entity
 @Getter
@@ -21,6 +19,7 @@ import javax.persistence.Enumerated;
 
 public class House extends  BaseEntity{
 
+    @ManyToOne
     private User houseOwner;
 
     private String name;
