@@ -14,4 +14,10 @@ public class Appointement extends BaseEntity{
     private Date date;
 
     private boolean isAction = false;
+
+    private int duration;
+
+    private int maxPersons;
+
+    private double price;
 }

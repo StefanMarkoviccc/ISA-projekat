@@ -14,4 +14,10 @@ public class AppointmentDTO extends BaseDTO{
     protected Date date;
 
     protected boolean isAction=false;
+
+    protected int duration;
+
+    protected int maxPersons;
+
+    protected  double price;
 }
