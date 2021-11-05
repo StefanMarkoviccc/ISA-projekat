@@ -71,6 +71,22 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
     @Override
     public Appointement edit(Long id, AppointmentDTO appointmentDTO) {
-        return null;
+        Optional<Appointement> appointement = appointmentRepository.findOne(id);
+
+        if(appointement.isEmpty()){
+            return null;
+        }
+        Appointement appointement1 = AppointmentConverter.fromDTO(appointmentDTO);
+
+        appointement.get().setAction(appointement1.isAction());
+        appointement.get().setMaxPersons(appointement1.getMaxPersons());
+        appointement.get().setDate(appointement1.getDate());
+        appointement.get().setDeleted(appointement1.isDeleted());
+        appointement.get().setDuration(appointement1.getDuration());
+        appointement.get().setPrice(appointement1.getPrice());
+        appointement.get().setHouse(appointement1.getHouse());
+        appointement.get().setRoom(appointement1.getRoom());
+
+        return appointmentRepository.save(appointement.get());
     }
 }
