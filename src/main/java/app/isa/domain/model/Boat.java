@@ -33,4 +33,6 @@ public class Boat extends BaseEntity{
 
     private String rulesOfConduct;
 
+    private String fishingEquipment;
+
 }
