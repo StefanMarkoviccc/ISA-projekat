@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Appointement extends BaseEntity{
+public class Appointment extends BaseEntity{
 
     @ManyToOne
     private House house;

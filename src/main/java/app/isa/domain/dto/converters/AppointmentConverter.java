@@ -1,18 +1,16 @@
 package app.isa.domain.dto.converters;
 
 import app.isa.domain.dto.AppointmentDTO;
-import app.isa.domain.model.Appointement;
-import app.isa.domain.model.House;
-import app.isa.repository.HouseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import app.isa.domain.model.Appointment;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentConverter {
 
-    public static Appointement fromDTO(AppointmentDTO appointmentDTO) {
+    public static Appointment fromDTO(AppointmentDTO appointmentDTO) {
 
-        Appointement appointment = new Appointement();
+        Appointment appointment = new Appointment();
         appointment.setId(appointmentDTO.getId());
         appointment.setAction(appointmentDTO.isAction());
         appointment.setDate(appointmentDTO.getDate());
@@ -25,7 +23,7 @@ public class AppointmentConverter {
         return appointment;
     }
 
-    public static AppointmentDTO toDTO(Appointement appointment){
+    public static AppointmentDTO toDTO(Appointment appointment){
         AppointmentDTO appointmentDTO = new AppointmentDTO();
 
         appointmentDTO.setId(appointment.getId());
@@ -40,10 +38,10 @@ public class AppointmentConverter {
         return appointmentDTO;
     }
 
-    public static List<AppointmentDTO> toDTOList(List<Appointement> appointements){
+    public static List<AppointmentDTO> toDTOList(List<Appointment> appointments){
         ArrayList<AppointmentDTO> appointmentDTOList = new ArrayList<AppointmentDTO>();
-        for(Appointement appointement : appointements){
-            appointmentDTOList.add(toDTO(appointement));
+        for(Appointment appointment : appointments){
+            appointmentDTOList.add(toDTO(appointment));
         }
         return  appointmentDTOList;
     }

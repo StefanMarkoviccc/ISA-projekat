@@ -2,17 +2,12 @@ package app.isa.controller;
 
 import app.isa.domain.dto.AppointmentDTO;
 import app.isa.domain.dto.converters.AppointmentConverter;
-import app.isa.domain.dto.converters.HouseConverter;
-import app.isa.domain.model.Appointement;
-import app.isa.domain.model.House;
+import app.isa.domain.model.Appointment;
 import app.isa.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,12 +22,12 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<AppointmentDTO> add(@RequestBody AppointmentDTO appointmentDTO){
-        Appointement appointement = appointmentService.add(appointmentDTO);
+        Appointment appointment = appointmentService.add(appointmentDTO);
 
-        if(appointement==null){
+        if(appointment ==null){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return  new ResponseEntity<>(AppointmentConverter.toDTO(appointement),HttpStatus.CREATED);
+        return  new ResponseEntity<>(AppointmentConverter.toDTO(appointment),HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -52,20 +47,20 @@ public class AppointmentController {
 
     @GetMapping
     public ResponseEntity<AppointmentDTO> getAppointment(@PathVariable Long id){
-        Appointement appointement = appointmentService.getAppointment(id);
+        Appointment appointment = appointmentService.getAppointment(id);
 
-        if(appointement == null){
+        if(appointment == null){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointement), HttpStatus.OK);
+        return new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointment), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<AppointmentDTO> edit(@PathVariable Long id, @RequestBody AppointmentDTO appointmentDTO){
-        Appointement appointement = appointmentService.edit(id,appointmentDTO);
-        if (appointement == null){
+        Appointment appointment = appointmentService.edit(id,appointmentDTO);
+        if (appointment == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointement), HttpStatus.CREATED);
+        return new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointment), HttpStatus.CREATED);
     }
 }
