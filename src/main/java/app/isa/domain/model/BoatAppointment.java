@@ -6,20 +6,18 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Appointment extends BaseEntity{
 
-
-    @ManyToOne
-    private House house;
+public class BoatAppointment extends BaseEntity{
 
     @ManyToOne
-    private Room room;
+    private Boat boat;
 
     private Date date;
 
@@ -30,4 +28,5 @@ public class Appointment extends BaseEntity{
     private int maxPersons;
 
     private double price;
+
 }

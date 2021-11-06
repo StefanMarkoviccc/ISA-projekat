@@ -16,5 +16,5 @@ public class PriceListDTO extends  BaseDTO{
 
     protected double price;
 
-    protected House house;
+    protected Long houseID;
 }
