@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
@@ -19,6 +20,7 @@ public class PriceList extends BaseEntity{
 
     private double price;
 
+    @ManyToOne
     private House house;
 
 

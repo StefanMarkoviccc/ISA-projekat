@@ -5,21 +5,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 
-public class Room extends BaseEntity{
+public class Navigation extends BaseEntity{
 
-    private String roomNumber;
-
-    private int numberOfBeds;
+    private String name;
 
     @ManyToOne
-    private House house;
+    private Boat boat;
 }

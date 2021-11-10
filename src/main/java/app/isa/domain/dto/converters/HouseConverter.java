@@ -13,7 +13,6 @@ public class HouseConverter {
         House house = new House();
         house.setId(houseDTO.getId());
         house.setAddress(houseDTO.getAddress());
-        house.setHouseOwner(houseDTO.getHouseOwner());
         house.setDescription(houseDTO.getDescription());
         house.setGeographicalLength(houseDTO.getGeographicalLength());
         house.setGeographicalWidth(houseDTO.getGeographicalWidth());
@@ -27,7 +26,6 @@ public class HouseConverter {
         HouseDTO houseDTO = new HouseDTO();
         houseDTO.setId(house.getId());
         houseDTO.setAddress(house.getAddress());
-        houseDTO.setHouseOwner(house.getHouseOwner());
         houseDTO.setDescription(house.getDescription());
         houseDTO.setGeographicalLength(house.getGeographicalLength());
         houseDTO.setGeographicalWidth(house.getGeographicalWidth());

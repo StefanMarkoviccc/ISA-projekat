@@ -36,7 +36,7 @@ public class HouseController {
         return new ResponseEntity<HouseDTO>(HouseConverter.toDTO(house),HttpStatus.OK);
     }
 
-    //Da li treba nesto u url????????????????????????
+
     @PostMapping
     public ResponseEntity<HouseDTO> add(@RequestBody HouseDTO houseDTO){
         House house = houseService.add(houseDTO);
