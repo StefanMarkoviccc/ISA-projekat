@@ -1,7 +1,6 @@
 package app.isa.domain.dto.converters;
 
-import app.isa.domain.dto.RegistrationDTO;
-import app.isa.domain.dto.UserDTO;
+import app.isa.domain.dto.DTO.UserDTO;
 import app.isa.domain.model.User;
 
 import java.util.ArrayList;

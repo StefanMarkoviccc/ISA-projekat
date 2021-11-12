@@ -17,7 +17,7 @@ public class Adventure  extends BaseEntity {
 
     private String name;
 
-    private String adress;
+    private String address;
 
     private Double lagitude;
 

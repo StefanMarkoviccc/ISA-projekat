@@ -9,14 +9,11 @@ import app.isa.repository.AppointmentRepository;
 import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class AppointmentServiceImplementation implements AppointmentService{
+public class AdventurePriceListImplementation implements AppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -27,7 +24,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
     @Autowired
     private RoomRepository roomRepository;
 
-    public Appointment add(AppointmentDTO appointmentDTO){
+    public Appointment add(AppointmentDTO appointmentDTO) {
         Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
         Optional<House> house = houseRepository.findOne(appointmentDTO.getHouseId());
         appointment.setHouse(house.get());
@@ -36,7 +33,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
         return appointmentRepository.save(appointment);
     }
 
-    public  boolean deleted(Long id) {
+    public boolean deleted(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findOne(id);
 
         if (appointment.isEmpty()) {
@@ -47,9 +44,10 @@ public class AppointmentServiceImplementation implements AppointmentService{
         appointmentRepository.save(appointment.get());
         return true;
     }
+
     @Override
     public List<Appointment> getList() {
-        return  appointmentRepository.getAll();
+        return appointmentRepository.getAll();
     }
 
     @Override
@@ -57,7 +55,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
         Optional<Appointment> appointment = appointmentRepository.findOne(id);
 
-        if(appointment.isEmpty()){
+        if (appointment.isEmpty()) {
             return null;
         }
 
@@ -68,7 +66,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
     public Appointment edit(Long id, AppointmentDTO appointmentDTO) {
         Optional<Appointment> appointment = appointmentRepository.findOne(id);
 
-        if(appointment.isEmpty()){
+        if (appointment.isEmpty()) {
             return null;
         }
         Appointment appointment1 = AppointmentConverter.fromDTO(appointmentDTO);

@@ -1,6 +1,6 @@
 package app.isa.domain.dto.converters;
 
-import app.isa.domain.dto.AppointmentDTO;
+import app.isa.domain.dto.DTO.AppointmentDTO;
 import app.isa.domain.model.Appointment;
 
 import java.util.ArrayList;

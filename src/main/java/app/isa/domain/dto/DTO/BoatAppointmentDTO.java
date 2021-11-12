@@ -1,20 +1,19 @@
-package app.isa.domain.dto;
+package app.isa.domain.dto.DTO;
 
-import app.isa.domain.model.House;
-import app.isa.domain.model.Room;
+import app.isa.domain.dto.DTO.BaseDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class AppointmentDTO extends BaseDTO{
 
-    protected Long houseId;
+public class BoatAppointmentDTO extends BaseDTO {
 
-    protected Long roomId;
+    protected Long boatID;
 
     protected Date date;
 
@@ -24,5 +23,5 @@ public class AppointmentDTO extends BaseDTO{
 
     protected int maxPersons;
 
-    protected  double price;
+    protected double price;
 }

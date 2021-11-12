@@ -1,6 +1,6 @@
 package app.isa.service;
 
-import app.isa.domain.dto.BoatAppointmentDTO;
+import app.isa.domain.dto.DTO.BoatAppointmentDTO;
 import app.isa.domain.dto.converters.BoatAppointmentConverter;
 import app.isa.domain.model.BoatAppointment;
 import app.isa.repository.BoatAppointmentRepository;
