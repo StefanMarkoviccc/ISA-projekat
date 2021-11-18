@@ -22,12 +22,12 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public List<User> getList() {
-        return userRepository.getAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User getUser(Long id) {
-        Optional<User> user = userRepository.findOne(id);
+        Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty()) {
             return null;
@@ -49,7 +49,7 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User edit(Long id, UserDTO userDTO) {
 
-        Optional<User> user = userRepository.findOne(id);
+        Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty()) {
             return null;
@@ -69,7 +69,7 @@ public class UserServiceImplementation implements UserService {
     @Override
     public boolean delete(Long id) {
 
-        Optional<User> user = userRepository.findOne(id);
+        Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty()) {
             return false;

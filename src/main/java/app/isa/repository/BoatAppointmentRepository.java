@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface BoatAppointmentRepository extends JpaRepository<BoatAppointment, Long> {
 
-    Optional<BoatAppointment> findOne(Long id);
-    List<BoatAppointment> getAll();
-
 }

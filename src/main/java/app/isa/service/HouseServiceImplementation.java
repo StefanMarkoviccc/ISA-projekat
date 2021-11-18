@@ -18,12 +18,12 @@ public class HouseServiceImplementation implements  HouseService {
 
     @Override
     public List<House> getList() {
-        return houseRepository.getAll();
+        return houseRepository.findAll();
     }
 
     @Override
     public House getHouse(Long id) {
-        Optional<House> house = houseRepository.findOne(id);
+        Optional<House> house = houseRepository.findById(id);
 
         if(house.isEmpty()){
             return  null;
@@ -40,7 +40,7 @@ public class HouseServiceImplementation implements  HouseService {
     @Override
     public House edit(Long id, HouseDTO houseDTO) {
 
-        Optional<House> house = houseRepository.findOne(id);
+        Optional<House> house = houseRepository.findById(id);
 
         if(house.isEmpty()){
             return null;
@@ -62,7 +62,7 @@ public class HouseServiceImplementation implements  HouseService {
     @Override
     public boolean deleted(Long id) {
 
-        Optional<House> house = houseRepository.findOne(id);
+        Optional<House> house = houseRepository.findById(id);
 
         if(house.isEmpty()){
             return  false;

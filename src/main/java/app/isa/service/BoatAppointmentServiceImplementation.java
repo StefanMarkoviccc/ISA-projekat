@@ -18,12 +18,12 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
 
     @Override
     public List<BoatAppointment> getList() {
-        return boatAppointmentRepository.getAll();
+        return boatAppointmentRepository.findAll();
     }
 
     @Override
     public BoatAppointment getBoatAppointment(Long id) {
-        Optional<BoatAppointment> boatAppointment = boatAppointmentRepository.findOne(id);
+        Optional<BoatAppointment> boatAppointment = boatAppointmentRepository.findById(id);
 
         if(boatAppointment.isEmpty()){
             return  null;

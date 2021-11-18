@@ -29,15 +29,15 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
     public Appointment add(AppointmentDTO appointmentDTO){
         Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
-        Optional<House> house = houseRepository.findOne(appointmentDTO.getHouseId());
+        Optional<House> house = houseRepository.findById(appointmentDTO.getHouseId());
         appointment.setHouse(house.get());
-        Optional<Room> room = roomRepository.findOne(appointmentDTO.getRoomId());
+        Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
         appointment.setRoom(room.get());
         return appointmentRepository.save(appointment);
     }
 
     public  boolean deleted(Long id) {
-        Optional<Appointment> appointment = appointmentRepository.findOne(id);
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
 
         if (appointment.isEmpty()) {
             return false;
@@ -49,13 +49,13 @@ public class AppointmentServiceImplementation implements AppointmentService{
     }
     @Override
     public List<Appointment> getList() {
-        return  appointmentRepository.getAll();
+        return  appointmentRepository.findAll();
     }
 
     @Override
     public Appointment getAppointment(Long id) {
 
-        Optional<Appointment> appointment = appointmentRepository.findOne(id);
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
 
         if(appointment.isEmpty()){
             return null;
@@ -66,7 +66,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
     @Override
     public Appointment edit(Long id, AppointmentDTO appointmentDTO) {
-        Optional<Appointment> appointment = appointmentRepository.findOne(id);
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
 
         if(appointment.isEmpty()){
             return null;

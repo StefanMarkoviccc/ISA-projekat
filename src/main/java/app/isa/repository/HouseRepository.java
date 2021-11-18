@@ -10,6 +10,4 @@ import java.util.Optional;
 @Repository
 public interface HouseRepository  extends JpaRepository<House, Long> {
 
-    Optional<House> findOne(Long id);
-    List<House> getAll();
 }

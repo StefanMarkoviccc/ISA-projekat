@@ -18,12 +18,12 @@ public class BoatServiceImplementation implements BoatService{
 
     @Override
     public List<Boat> getList() {
-        return boatRepository.getAll();
+        return boatRepository.findAll();
     }
 
     @Override
     public Boat getBoat(Long id) {
-        Optional<Boat> boat = boatRepository.findOne(id);
+        Optional<Boat> boat = boatRepository.findById(id);
 
         if(boat.isEmpty()){
             return  null;
@@ -33,7 +33,7 @@ public class BoatServiceImplementation implements BoatService{
 
     @Override
     public Boat edit(Long id, BoatDTO boatDTO) {
-        Optional<Boat> boat = boatRepository.findOne(id);
+        Optional<Boat> boat = boatRepository.findById(id);
 
         if(boat.isEmpty()){
             return  null;
@@ -66,7 +66,7 @@ public class BoatServiceImplementation implements BoatService{
     @Override
     public boolean deleted(Long id) {
 
-        Optional<Boat> boat = boatRepository.findOne(id);
+        Optional<Boat> boat = boatRepository.findById(id);
 
         if(boat.isEmpty()){
             return  false;

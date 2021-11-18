@@ -43,12 +43,7 @@ public class AppointmentController {
 
     }
 
-    @GetMapping
-    public ResponseEntity<List<AppointmentDTO>> getAppointments(){
-        return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointmentService.getList()), HttpStatus.OK);
-    }
-
-    @GetMapping
+    @GetMapping(path = "/{id}")
     public ResponseEntity<AppointmentDTO> getAppointment(@PathVariable Long id){
         Appointment appointment = appointmentService.getAppointment(id);
 
