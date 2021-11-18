@@ -21,7 +21,7 @@ public class Appointment extends BaseEntity{
     @ManyToOne
     private Room room;
 
-    private Date date;
+    private Date appointmentDate;
 
     private boolean isAction = false;
 
