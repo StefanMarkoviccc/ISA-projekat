@@ -49,8 +49,6 @@ CREATE TABLE 'boat_appointment' (
 
 DROP TABLE IF EXISTS 'house';
 
-)
-
 CREATE TABLE 'house'(
     'id' bigint(20) NOT NULL AUTO_INCREMENT
     'user_id' bigint(20) NOT NULL
