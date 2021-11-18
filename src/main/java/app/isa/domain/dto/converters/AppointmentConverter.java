@@ -13,7 +13,7 @@ public class AppointmentConverter {
         Appointment appointment = new Appointment();
         appointment.setId(appointmentDTO.getId());
         appointment.setAction(appointmentDTO.isAction());
-        appointment.setDate(appointmentDTO.getDate());
+        appointment.setAppointmentDate(appointmentDTO.getDate());
         appointment.setDuration(appointmentDTO.getDuration());
         appointment.setMaxPersons(appointmentDTO.getMaxPersons());
         appointment.setPrice(appointmentDTO.getPrice());
@@ -29,7 +29,7 @@ public class AppointmentConverter {
         appointmentDTO.setId(appointment.getId());
         appointmentDTO.setHouseId(appointment.getHouse().getId());
         appointmentDTO.setRoomId(appointment.getRoom().getId());
-        appointmentDTO.setDate(appointment.getDate());
+        appointmentDTO.setDate(appointment.getAppointmentDate());
         appointmentDTO.setAction(appointment.isAction());
         appointmentDTO.setDuration(appointment.getDuration());
         appointmentDTO.setMaxPersons(appointment.getMaxPersons());

@@ -75,7 +75,7 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
         appointment.get().setAction(appointment1.isAction());
         appointment.get().setMaxPersons(appointment1.getMaxPersons());
-        appointment.get().setDate(appointment1.getDate());
+        appointment.get().setAppointmentDate(appointment1.getAppointmentDate());
         appointment.get().setDeleted(appointment1.isDeleted());
         appointment.get().setDuration(appointment1.getDuration());
         appointment.get().setPrice(appointment1.getPrice());
