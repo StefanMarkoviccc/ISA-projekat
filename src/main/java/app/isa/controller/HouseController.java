@@ -1,11 +1,9 @@
 package app.isa.controller;
 
-import app.isa.domain.dto.HouseDTO;
-import app.isa.domain.dto.RegistrationDTO;
+import app.isa.domain.dto.DTO.HouseDTO;
 import app.isa.domain.dto.converters.HouseConverter;
 import app.isa.domain.model.House;
 import app.isa.service.HouseService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

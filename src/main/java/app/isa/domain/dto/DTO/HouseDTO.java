@@ -1,7 +1,7 @@
-package app.isa.domain.dto;
+package app.isa.domain.dto.DTO;
 
 
-import app.isa.domain.model.User;
+import app.isa.domain.dto.DTO.BaseDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class HouseDTO extends BaseDTO{
+public class HouseDTO extends BaseDTO {
 
     protected String name;
 

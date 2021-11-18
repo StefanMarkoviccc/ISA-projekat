@@ -91,7 +91,7 @@ CREATE TABLE `price_list`(
     `house_id` bigint(20) NOT NULL,
     `price` decimal(19,4) NOT NULL,
     PRIMARY KEY(`id`),
-    FOREIGN KEY(`house_id`) REFERENCES house(`id`),
+    FOREIGN KEY(`house_id`) REFERENCES house(`id`)
 );
 
 DROP TABLE IF EXISTS `appointment`;
@@ -107,5 +107,45 @@ CREATE TABLE `appointment`(
     `price` decimal(19,4) NOT NULL,
     PRIMARY KEY(`id`),
     FOREIGN KEY(`house_id`) REFERENCES house(`id`),
-    FOREIGN KEY(`room_id`) REFERENCES room(`id`),
+    FOREIGN KEY(`room_id`) REFERENCES room(`id`)
+);
+
+DROP TABLE IF EXISTS `adventure`;
+
+CREATE TABLE `adventure`(
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `address` varchar(255) NOT NULL,
+    `lagitude` decimal(19,4) NOT NULL,
+    `longitude` decimal(19,4) NOT NULL,
+    `description` varchar(255) NOT NULL,
+    `biography` varchar(255) NOT NULL,
+    `adventure_pictures` varchar(255) NOT NULL,
+    `max_number_of_people` bigint(20) NOT NULL,
+    `adventure_appointment` datetime NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+DROP TABLE IF EXISTS `adventure_price`;
+
+CREATE TABLE `adventure_price` (
+    `id` bigint(20) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `price` decimal(19,4) NOT NULL,
+    `description` varchar(255) NOT NULL,
+    PRIMARY KEY(`id`)
+    FOREIGN KEY(`adventure_id` REFERENCES adventure(`id`)
+);
+
+DROP TABLE IF EXISTS `adventure_reservation`;
+
+CREATE TABLE `adventure_reservation` (
+    `id` bigint(20) NOT NULL,
+    `date_and_time` datetime NOT NULL,
+    `place` varchar(255) NOT NULL,
+    `duration` bigint(20) NOT NULL,
+    `maximum_number_of_persons` varchar(255) NOT NULL,
+    `additional_services` varchar(255) NOT NULL,
+    `price` decimal(19,4) NOT NULL,
+    PRIMARY KEY(`id`)
 );

@@ -1,8 +1,8 @@
 package app.isa.service;
 
 import app.isa.domain.dto.converters.RegistrationConverter;
-import app.isa.domain.dto.RegistrationDTO;
-import app.isa.domain.dto.UserDTO;
+import app.isa.domain.dto.DTO.RegistrationDTO;
+import app.isa.domain.dto.DTO.UserDTO;
 import app.isa.domain.dto.converters.UserConverter;
 import app.isa.domain.model.RegistrationStatus;
 import app.isa.domain.model.User;

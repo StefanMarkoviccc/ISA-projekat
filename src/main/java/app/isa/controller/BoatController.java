@@ -1,12 +1,8 @@
 package app.isa.controller;
 
-import app.isa.domain.dto.BoatDTO;
-import app.isa.domain.dto.HouseDTO;
+import app.isa.domain.dto.DTO.BoatDTO;
 import app.isa.domain.dto.converters.BoatConverter;
-import app.isa.domain.dto.converters.HouseConverter;
 import app.isa.domain.model.Boat;
-import app.isa.domain.model.House;
-import app.isa.repository.BoatRepository;
 import app.isa.service.BoatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

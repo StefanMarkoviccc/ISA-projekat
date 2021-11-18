@@ -37,4 +37,8 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private RegistrationStatus registrationStatus;
+
+    public String getRole() {
+        return userType.toString();
+    }
 }

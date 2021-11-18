@@ -1,6 +1,6 @@
 package app.isa.service;
 
-import app.isa.domain.dto.HouseDTO;
+import app.isa.domain.dto.DTO.HouseDTO;
 import app.isa.domain.model.House;
 
 import java.util.List;

@@ -1,5 +1,6 @@
-package app.isa.domain.dto;
+package app.isa.domain.dto.DTO;
 
+import app.isa.domain.dto.DTO.BaseDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

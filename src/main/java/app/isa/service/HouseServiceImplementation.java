@@ -1,6 +1,6 @@
 package app.isa.service;
 
-import app.isa.domain.dto.HouseDTO;
+import app.isa.domain.dto.DTO.HouseDTO;
 import app.isa.domain.dto.converters.HouseConverter;
 import app.isa.domain.model.House;
 import app.isa.repository.HouseRepository;

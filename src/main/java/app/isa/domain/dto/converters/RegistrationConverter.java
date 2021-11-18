@@ -1,6 +1,6 @@
 package app.isa.domain.dto.converters;
 
-import app.isa.domain.dto.RegistrationDTO;
+import app.isa.domain.dto.DTO.RegistrationDTO;
 import app.isa.domain.model.User;
 
 public class RegistrationConverter {

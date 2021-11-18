@@ -1,7 +1,7 @@
 package app.isa.controller;
 
-import app.isa.domain.dto.RegistrationDTO;
-import app.isa.domain.dto.UserDTO;
+import app.isa.domain.dto.DTO.RegistrationDTO;
+import app.isa.domain.dto.DTO.UserDTO;
 import app.isa.domain.dto.converters.UserConverter;
 import app.isa.domain.model.User;
 import app.isa.domain.model.UserType;

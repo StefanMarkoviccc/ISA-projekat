@@ -5,7 +5,8 @@ import app.isa.domain.model.Appointment;
 
 import java.util.List;
 
-public interface AppointmentService {
+public interface AdventureService {
+
 
     Appointment add(AppointmentDTO appointmentDTO);
     boolean deleted(Long id);
