@@ -18,6 +18,8 @@ public class UserConverter {
         user.setAddress(userDTO.getAddress());
         user.setCity(userDTO.getCity());
         user.setCountry(userDTO.getCountry());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setDescription(userDTO.getDescription());
 
         return user;
     }
@@ -33,6 +35,8 @@ public class UserConverter {
         userDTO.setCity(user.getCity());
         userDTO.setCountry(user.getCountry());
         userDTO.setUserType(user.getUserType());
+        userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setDescription(user.getDescription());
 
         return userDTO;
     }

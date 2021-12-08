@@ -30,10 +30,10 @@ public class User extends BaseEntity {
 
     private String phoneNumber;
 
+    private String description;
+
     @Enumerated(EnumType.STRING)
     private UserType userType;
-
-    private String description;
 
     @Enumerated(EnumType.STRING)
     private RegistrationStatus registrationStatus;

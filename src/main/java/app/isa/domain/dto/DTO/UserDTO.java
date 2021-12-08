@@ -19,4 +19,5 @@ public class UserDTO extends BaseDTO {
     protected String country;
     protected String phoneNumber;
     protected UserType userType;
+    protected String description;
 }
