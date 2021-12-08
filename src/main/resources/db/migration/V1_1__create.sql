@@ -1,6 +1,5 @@
-DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `email` varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
@@ -16,13 +15,7 @@ CREATE TABLE `user` (
     PRIMARY KEY(`id`)
 );
 
-insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`) values(1, 'Stefan@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Stefan', 'Markovic', 'Danila Kisa 44', 'Novi Sad', 'Srbija', '0643580000', 'CLIENT', 'steks', 'APPROVED');
-insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`) values(2, 'Bojana@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Bojana', 'Lukic', 'Veselina Maslese 44', 'Novi Sad', 'Srbija', '065555555', 'HOUSE_OWNER', 'bojana mali luk', 'APPROVED');
-insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`) values(3, 'Viki@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Violeta', 'Kukic', 'Zitni trg 11', 'Novi Sad', 'Srbija', '0633333333', 'FISHING_INSTRUCTOR', 'kuki test', 'APPROVED');
-
-DROP TABLE IF EXISTS `boat`;
-
-CREATE TABLE `boat` (
+CREATE TABLE IF NOT EXISTS `boat` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `type` varchar(255) NOT NULL,
@@ -38,9 +31,7 @@ CREATE TABLE `boat` (
     PRIMARY KEY(`id`)
 );
 
-DROP TABLE IF EXISTS `boat_appointment`;
-
-CREATE TABLE `boat_appointment` (
+CREATE TABLE IF NOT EXISTS `boat_appointment` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `date` datetime NOT NULL,
     `is_action` bit(1) NOT NULL,
@@ -51,9 +42,7 @@ CREATE TABLE `boat_appointment` (
     FOREIGN KEY(`boat_id`) REFERENCES boat(`id`)
 );
 
-DROP TABLE IF EXISTS `house`;
-
-CREATE TABLE `house`(
+CREATE TABLE IF NOT EXISTS `house`(
     `id` bigint(20) NOT NULL AUTO_INCREMENT
     `user_id` bigint(20) NOT NULL
     `name` varchar(255) NOT NULL,
@@ -66,9 +55,7 @@ CREATE TABLE `house`(
     FOREIGN KEY (user_id) REFERENCES user(`id`)
 );
 
-DROP TABLE IF EXISTS `navigation`;
-
-CREATE TABLE `navigation` (
+CREATE TABLE IF NOT EXISTS `navigation` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT
     `name` varchar(255) NOT NULL
     `boat_id` bigint(20) NOT NULL
@@ -76,9 +63,7 @@ CREATE TABLE `navigation` (
     FOREIGN KEY (`boat_id`) REFERENCES boat(`id`)
 );
 
-DROP TABLE IF EXISTS `room`;
-
-CREATE TABLE `room` (
+CREATE TABLE IF NOT EXISTS `room` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT
     `room_number` varchar(20) NOT NULL
     `number_of_beds` bigint(20) NOT NULL
@@ -87,9 +72,7 @@ CREATE TABLE `room` (
     FOREIGN KEY (`house_id`) REFERENCES house(`id`)
 );
 
-DROP TABLE IF EXISTS `price_list`;
-
-CREATE TABLE `price_list`(
+CREATE TABLE IF NOT EXISTS `price_list`(
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `serviceName` varchar(255),
     `house_id` bigint(20) NOT NULL,
@@ -98,9 +81,7 @@ CREATE TABLE `price_list`(
     FOREIGN KEY(`house_id`) REFERENCES house(`id`)
 );
 
-DROP TABLE IF EXISTS `appointment`;
-
-CREATE TABLE `appointment`(
+CREATE TABLE IF NOT EXISTS `appointment`(
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `house_id` bigint(20) NOT NULL,
     `room_id` bigint(20) NOT NULL,
@@ -114,9 +95,7 @@ CREATE TABLE `appointment`(
     FOREIGN KEY(`room_id`) REFERENCES room(`id`)
 );
 
-DROP TABLE IF EXISTS `adventure`;
-
-CREATE TABLE `adventure`(
+CREATE TABLE IF NOT EXISTS `adventure`(
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `address` varchar(255) NOT NULL,
@@ -130,9 +109,7 @@ CREATE TABLE `adventure`(
     PRIMARY KEY(`id`)
 );
 
-DROP TABLE IF EXISTS `adventure_price`;
-
-CREATE TABLE `adventure_price` (
+CREATE TABLE IF NOT EXISTS `adventure_price` (
     `id` bigint(20) NOT NULL,
     `name` varchar(255) NOT NULL,
     `price` decimal(19,4) NOT NULL,
@@ -141,9 +118,7 @@ CREATE TABLE `adventure_price` (
     FOREIGN KEY(`adventure_id` REFERENCES adventure(`id`)
 );
 
-DROP TABLE IF EXISTS `adventure_reservation`;
-
-CREATE TABLE `adventure_reservation` (
+CREATE TABLE IF NOT EXISTS `adventure_reservation` (
     `id` bigint(20) NOT NULL,
     `date_and_time` datetime NOT NULL,
     `place` varchar(255) NOT NULL,
@@ -153,3 +128,7 @@ CREATE TABLE `adventure_reservation` (
     `price` decimal(19,4) NOT NULL,
     PRIMARY KEY(`id`)
 );
+
+insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(1, 'Stefan@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Stefan', 'Markovic', 'Danila Kisa 44', 'Novi Sad', 'Srbija', '0643580000', 'CLIENT', 'steks', 'APPROVED', 0);
+insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(2, 'Bojana@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Bojana', 'Lukic', 'Veselina Maslese 44', 'Novi Sad', 'Srbija', '065555555', 'HOUSE_OWNER', 'bojana mali luk', 'APPROVED', 0);
+insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(3, 'Viki@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Violeta', 'Kukic', 'Zitni trg 11', 'Novi Sad', 'Srbija', '0633333333', 'FISHING_INSTRUCTOR', 'kuki test', 'APPROVED', 0);
