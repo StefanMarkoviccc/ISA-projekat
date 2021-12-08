@@ -1,5 +1,6 @@
 package app.isa.service;
 
+import app.isa.config.SecurityUtils;
 import app.isa.domain.dto.converters.RegistrationConverter;
 import app.isa.domain.dto.DTO.RegistrationDTO;
 import app.isa.domain.dto.DTO.UserDTO;
@@ -8,6 +9,7 @@ import app.isa.domain.model.RegistrationStatus;
 import app.isa.domain.model.User;
 import app.isa.domain.model.UserType;
 import app.isa.repository.UserRepository;
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -84,5 +86,12 @@ public class UserServiceImplementation implements UserService {
         userRepository.save(user.get());
 
         return false;
+    }
+
+    @Override
+    public User getCurrent() {
+        String email = SecurityUtils.getCurrentUserLogin().get();
+
+        return userRepository.getByEmail(email);
     }
 }

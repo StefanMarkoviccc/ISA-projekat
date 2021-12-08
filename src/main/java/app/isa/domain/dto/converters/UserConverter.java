@@ -32,6 +32,7 @@ public class UserConverter {
         userDTO.setAddress(user.getAddress());
         userDTO.setCity(user.getCity());
         userDTO.setCountry(user.getCountry());
+        userDTO.setUserType(user.getUserType());
 
         return userDTO;
     }

@@ -147,6 +147,18 @@ public class UserController {
         return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
     }
 
+    @GetMapping(path = "/current")
+    public ResponseEntity<UserDTO> getCurrent() {
+
+        User user = userService.getCurrent();
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<UserDTO>(UserConverter.toDTO(user), HttpStatus.CREATED);
+    }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
@@ -170,4 +182,6 @@ public class UserController {
         responseDTO.setToken(token);
         return new ResponseEntity<LoginResponceDTO>(responseDTO, HttpStatus.OK);
     }
+
+
 }

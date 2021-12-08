@@ -1,6 +1,7 @@
 package app.isa.domain.dto.DTO;
 
 import app.isa.domain.dto.DTO.BaseDTO;
+import app.isa.domain.model.UserType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +18,5 @@ public class UserDTO extends BaseDTO {
     protected String city;
     protected String country;
     protected String phoneNumber;
+    protected UserType userType;
 }

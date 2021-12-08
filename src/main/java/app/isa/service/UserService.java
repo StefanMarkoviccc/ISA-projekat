@@ -14,5 +14,6 @@ public interface UserService {
     User register(RegistrationDTO registrationDTO, UserType userType);
     User edit(Long id, UserDTO userDTO);
     boolean delete(Long id);
+    User getCurrent();
 
 }
