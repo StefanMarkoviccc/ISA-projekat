@@ -1,14 +1,19 @@
 package app.isa.controller;
 
+import app.isa.config.CustomUserDetailsService;
+import app.isa.domain.dto.DTO.LoginDTO;
+import app.isa.domain.dto.DTO.LoginResponceDTO;
 import app.isa.domain.dto.DTO.RegistrationDTO;
 import app.isa.domain.dto.DTO.UserDTO;
 import app.isa.domain.dto.converters.UserConverter;
 import app.isa.domain.model.User;
 import app.isa.domain.model.UserType;
+import app.isa.security.TokenUtil;
 import app.isa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +24,15 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CustomUserDetailsService customUserService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TokenUtil tokenUtils;
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getUsers() {
@@ -141,5 +155,19 @@ public class UserController {
         }
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<LoginResponceDTO> registerAdministrator(@RequestBody LoginDTO loginDTO) {
+        User user = customUserService.findUserByEmail(loginDTO.getEmail());
+
+        if (user == null || !passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String token = tokenUtils.generateToken(user.getEmail(), user.getRole().toString());
+        LoginResponceDTO responseDTO = new LoginResponceDTO();
+        responseDTO.setToken(token);
+        return new ResponseEntity<LoginResponceDTO>(responseDTO, HttpStatus.OK);
     }
 }

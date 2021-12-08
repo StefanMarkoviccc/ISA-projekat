@@ -9,6 +9,7 @@ import app.isa.domain.model.User;
 import app.isa.domain.model.UserType;
 import app.isa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,9 @@ public class UserServiceImplementation implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getList() {
@@ -40,6 +44,7 @@ public class UserServiceImplementation implements UserService {
     public User register(RegistrationDTO registrationDTO, UserType userType) {
 
         User user = RegistrationConverter.fromDTO(registrationDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserType(userType);
         user.setRegistrationStatus(RegistrationStatus.WAITING);
 
