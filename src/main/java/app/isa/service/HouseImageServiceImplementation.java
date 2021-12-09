@@ -40,6 +40,7 @@ public class HouseImageServiceImplementation implements HouseImageService{
     @Override
     public HouseImage add(HouseImageDTO houseImageDTO) {
         HouseImage houseImage= HouseImageConverter.fromDTO(houseImageDTO);
+        houseImage.setHouse(houseRepository.getById(houseImageDTO.getHouseId()));
         return houseImageRepository.save(houseImage);
     }
 }
