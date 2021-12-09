@@ -30,4 +30,8 @@ public class House extends  BaseEntity{
 
     private String rulesOfConduct;
 
+    private String availabilityPeriod;
+
+    private double average;
+
 }
