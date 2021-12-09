@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RoomServiceImplementation {
+public class RoomServiceImplementation implements RoomService{
     @Autowired
     private RoomRepository roomRepository;
 
@@ -21,7 +21,7 @@ public class RoomServiceImplementation {
     }
 
 
-    public Room getBoat(Long id) {
+    public Room getRoom(Long id) {
         Optional<Room> room = roomRepository.findById(id);
 
         if(room.isEmpty()){

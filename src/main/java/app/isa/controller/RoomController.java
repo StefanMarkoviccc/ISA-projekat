@@ -18,28 +18,28 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<List<RoomDTO>> getBoats(){
+    public ResponseEntity<List<RoomDTO>> getRooms(){
         return new ResponseEntity<List<RoomDTO>>(RoomConverter.toDTOList(roomService.getList()), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<RoomDTO> getHouse(@PathVariable Long id){
+    public ResponseEntity<RoomDTO> getRoom(@PathVariable Long id){
 
-        Room boat = roomService.getRoom(id);
-        if (boat == null){
+        Room room = roomService.getRoom(id);
+        if (room == null){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<RoomDTO>(RoomConverter.toDTO(boat),HttpStatus.OK);
+        return new ResponseEntity<RoomDTO>(RoomConverter.toDTO(room),HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<RoomDTO> add(@RequestBody RoomDTO boatDTO){
-        Room boat = roomService.add(boatDTO);
+    public ResponseEntity<RoomDTO> add(@RequestBody RoomDTO roomDTO){
+        Room room = roomService.add(roomDTO);
 
-        if(boat == null){
+        if(room == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(RoomConverter.toDTO(boat),HttpStatus.CREATED);
+        return new ResponseEntity<>(RoomConverter.toDTO(room),HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{id}")
