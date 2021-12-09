@@ -4,6 +4,7 @@ import app.isa.domain.dto.DTO.HouseDTO;
 import app.isa.domain.dto.converters.HouseConverter;
 import app.isa.domain.model.House;
 import app.isa.service.HouseService;
+import org.hibernate.query.QueryParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,8 @@ public class HouseController {
     private HouseService houseService;
 
     @GetMapping
-    public ResponseEntity<List<HouseDTO>> getHouses(){
-        return new ResponseEntity<List<HouseDTO>>(HouseConverter.toDTOList(houseService.getList()), HttpStatus.OK);
+    public ResponseEntity<List<HouseDTO>> getHouses(@RequestParam String search){
+        return new ResponseEntity<List<HouseDTO>>(HouseConverter.toDTOList(houseService.getList(search)), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")

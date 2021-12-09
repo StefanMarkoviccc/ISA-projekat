@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface HouseService {
 
-    List<House> getList();
+    List<House> getList(String search);
     House getHouse(Long id);
     House edit(Long id, HouseDTO houseDTO);
     House add(HouseDTO houseDTO);

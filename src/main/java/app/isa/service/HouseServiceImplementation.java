@@ -17,8 +17,8 @@ public class HouseServiceImplementation implements  HouseService {
     private HouseRepository houseRepository;
 
     @Override
-    public List<House> getList() {
-        return houseRepository.findAll();
+    public List<House> getList(String search) {
+        return houseRepository.findAllByNameContaining(search);
     }
 
     @Override
