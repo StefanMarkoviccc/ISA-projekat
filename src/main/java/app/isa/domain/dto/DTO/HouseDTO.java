@@ -22,4 +22,8 @@ public class HouseDTO extends BaseDTO {
     protected String description;
 
     protected String rulesOfConduct;
+
+    protected String availabilityPeriod;
+
+    protected double average;
 }

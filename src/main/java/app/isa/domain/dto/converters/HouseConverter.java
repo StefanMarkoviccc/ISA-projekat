@@ -18,6 +18,8 @@ public class HouseConverter {
         house.setGeographicalWidth(houseDTO.getGeographicalWidth());
         house.setName(houseDTO.getName());
         house.setRulesOfConduct(houseDTO.getRulesOfConduct());
+        house.setAvailabilityPeriod(houseDTO.getAvailabilityPeriod());
+        house.setAverage(houseDTO.getAverage());
 
         return house;
     }
@@ -31,6 +33,8 @@ public class HouseConverter {
         houseDTO.setGeographicalWidth(house.getGeographicalWidth());
         houseDTO.setName(house.getName());
         houseDTO.setRulesOfConduct(house.getRulesOfConduct());
+        houseDTO.setAvailabilityPeriod(house.getAvailabilityPeriod());
+        houseDTO.setAverage(house.getAverage());
 
         return houseDTO;
     }
