@@ -94,4 +94,12 @@ public class UserServiceImplementation implements UserService {
 
         return userRepository.getByEmail(email);
     }
+
+    @Override
+    public User changePassword(String password, Long id) {
+        User user = userRepository.getById(id);
+        user.setPassword(passwordEncoder.encode(password));
+
+        return userRepository.save(user);
+    }
 }

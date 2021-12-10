@@ -15,5 +15,5 @@ public interface UserService {
     User edit(Long id, UserDTO userDTO);
     boolean delete(Long id);
     User getCurrent();
-
+    User changePassword(String password, Long id);
 }
