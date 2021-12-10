@@ -1,10 +1,7 @@
 package app.isa.controller;
 
 import app.isa.config.CustomUserDetailsService;
-import app.isa.domain.dto.DTO.LoginDTO;
-import app.isa.domain.dto.DTO.LoginResponceDTO;
-import app.isa.domain.dto.DTO.RegistrationDTO;
-import app.isa.domain.dto.DTO.UserDTO;
+import app.isa.domain.dto.DTO.*;
 import app.isa.domain.dto.converters.UserConverter;
 import app.isa.domain.model.User;
 import app.isa.domain.model.UserType;
@@ -183,5 +180,17 @@ public class UserController {
         return new ResponseEntity<LoginResponceDTO>(responseDTO, HttpStatus.OK);
     }
 
+    @PutMapping(path = "/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
 
+        User user = userService.getCurrent();
+
+        if(user == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        userService.changePassword(changePasswordDTO.getPassword(), user.getId());
+
+        return  new ResponseEntity<>(HttpStatus.OK);
+    }
 }
