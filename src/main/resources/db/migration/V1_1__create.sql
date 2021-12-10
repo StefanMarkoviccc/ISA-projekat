@@ -136,4 +136,4 @@ insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `addre
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (1,'Maximus', 'SeaDOO', '5', '2', '200', '300', 'Danila Kisa 23', 'opisopisopis', '5', 'nesto', 'YES', 0);
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (2,'Koleos', 'Yamaha', '12', '4', '200', '200', 'Milosa Parovica 36', 'opis', '12', 'nestoo', 'NO', 0);
 
---insert into `adventure` (`id`, `name`, `address`, `lagitude`, `longitude`, `description`, `biography`, `adventure_pictures`, `max_number_of_people`, `adventure_appointment`, `rules`, `finishing_equipment`, ``)
+--insert into `adventure` (`id`, `name`, `address`, `lagitude`, `longitude`, `description`, `biography`, `adventure_pictures`, `max_number_of_people`, `adventure_appointment`, `rules`, `fishing_equipment`, ``)
