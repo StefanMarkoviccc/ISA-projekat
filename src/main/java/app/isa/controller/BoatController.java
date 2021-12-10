@@ -20,8 +20,8 @@ public class BoatController {
     private BoatService boatService;
 
     @GetMapping
-    public ResponseEntity<List<BoatDTO>> getBoats(){
-        return new ResponseEntity<List<BoatDTO>>(BoatConverter.toDTOList(boatService.getList()), HttpStatus.OK);
+    public ResponseEntity<List<BoatDTO>> getBoats(@RequestParam String search){
+        return new ResponseEntity<List<BoatDTO>>(BoatConverter.toDTOList(boatService.getList(search)), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `boat` (
     `promotional_description` varchar(255) NOT NULL,
     `capacity` bigint(20) NOT NULL,
     `rules_of_conduct` varchar(255) NOT NULL,
-    `finishing_equipment` varchar(255) NOT NULL,
+    `fishing_equipment` varchar(255) NOT NULL,
     PRIMARY KEY(`id`)
 );
 
@@ -132,3 +132,8 @@ CREATE TABLE IF NOT EXISTS `adventure_reservation` (
 insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(1, 'Stefan@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Stefan', 'Markovic', 'Danila Kisa 44', 'Novi Sad', 'Srbija', '0643580000', 'CLIENT', 'steks', 'APPROVED', 0);
 insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(2, 'Bojana@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Bojana', 'Lukic', 'Veselina Maslese 44', 'Novi Sad', 'Srbija', '065555555', 'HOUSE_OWNER', 'bojana mali luk', 'APPROVED', 0);
 insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `address`, `city`, `country`, `phone_number`, `user_type`, `description`, `registration_status`, `deleted`) values(3, 'Viki@gmail.com', '$2a$12$6ACorI9jZYYh/f6014L9u.nKqKcvnH6GX7P89aiM87yGMPWarY4f6', 'Violeta', 'Kukic', 'Zitni trg 11', 'Novi Sad', 'Srbija', '0633333333', 'FISHING_INSTRUCTOR', 'kuki test', 'APPROVED', 0);
+
+insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (1,'Maximus', 'SeaDOO', '5', '2', '200', '300', 'Danila Kisa 23', 'opisopisopis', '5', 'nesto', 'YES', 0);
+insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (2,'Koleos', 'Yamaha', '12', '4', '200', '200', 'Milosa Parovica 36', 'opis', '12', 'nestoo', 'NO', 0);
+
+--insert into `adventure` (`id`, `name`, `address`, `lagitude`, `longitude`, `description`, `biography`, `adventure_pictures`, `max_number_of_people`, `adventure_appointment`, `rules`, `fishing_equipment`, ``)

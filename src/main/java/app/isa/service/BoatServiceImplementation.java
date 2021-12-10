@@ -17,8 +17,7 @@ public class BoatServiceImplementation implements BoatService{
     private BoatRepository boatRepository;
 
     @Override
-    public List<Boat> getList() {
-        return boatRepository.findAll();
+    public List<Boat> getList(String search) {return boatRepository.findAllByNameContaining(search);
     }
 
     @Override
