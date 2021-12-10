@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface HouseRepository  extends JpaRepository<House, Long> {
-    List<House> findAllByNameContaining(String name);
+    List<House> findAllByNameContainingAndDeleted(String name, Boolean deleted);
 }
