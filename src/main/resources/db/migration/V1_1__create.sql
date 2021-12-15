@@ -99,13 +99,12 @@ CREATE TABLE IF NOT EXISTS `adventure`(
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `address` varchar(255) NOT NULL,
-    `lagitude` decimal(19,4) NOT NULL,
-    `longitude` decimal(19,4) NOT NULL,
     `description` varchar(255) NOT NULL,
     `biography` varchar(255) NOT NULL,
-    `adventure_pictures` varchar(255) NOT NULL,
     `max_number_of_people` bigint(20) NOT NULL,
     `adventure_appointment` datetime NOT NULL,
+    `rules` varchar(255) NOT NULL,
+    `fishing_equipment` varchar(255) NOT NULL,
     PRIMARY KEY(`id`)
 );
 
@@ -136,4 +135,4 @@ insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `addre
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (1,'Maximus', 'SeaDOO', '5', '2', '200', '300', 'Danila Kisa 23', 'opisopisopis', '5', 'nesto', 'YES', 0);
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (2,'Koleos', 'Yamaha', '12', '4', '200', '200', 'Milosa Parovica 36', 'opis', '12', 'nestoo', 'NO', 0);
 
---insert into `adventure` (`id`, `name`, `address`, `lagitude`, `longitude`, `description`, `biography`, `adventure_pictures`, `max_number_of_people`, `adventure_appointment`, `rules`, `fishing_equipment`, ``)
+insert into `adventure` (`id`, `name`, `address`, `description`, `biography`, `max_number_of_people`, `adventure_appointment`, `rules`, `fishing_equipment`,`price`,`deleted`) values (1,'Tara', 'Bulevar Patrijarha Pavla 30', 'Rafting', 'Many years of experience with the river, people ..', 'For one round 15.', '21.05.2022.-26.05.2022.', 'Obedience, devotion.', 'Diving equipment', '120', 0);

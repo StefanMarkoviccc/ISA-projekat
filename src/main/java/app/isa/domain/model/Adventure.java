@@ -19,15 +19,9 @@ public class Adventure  extends BaseEntity {
 
     private String address;
 
-    private Double lagitude;
-
-    private Double longitude;
-
     private String description;
 
     private String biography;
-
-    private String adventurePictures;
 
     private int maxNumberOfPeople;
 
@@ -36,16 +30,6 @@ public class Adventure  extends BaseEntity {
     private String rules;
 
     private String fishingEquipment;
-
-    private boolean isFreeCancelation;
-
-    private Double cancelationPercent;
-
-    private String location;
-
-    private int standing;
-
-    private String additionalServices;
 
     private Double price;
 
