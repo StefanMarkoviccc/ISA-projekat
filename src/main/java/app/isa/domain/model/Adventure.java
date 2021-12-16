@@ -33,6 +33,12 @@ public class Adventure  extends BaseEntity {
 
     private Double price;
 
+    protected String adventurePictures;
+
+    protected Boolean isFreeCancelation;
+
+    protected Double cancelationPercent;
+
 
 
 }

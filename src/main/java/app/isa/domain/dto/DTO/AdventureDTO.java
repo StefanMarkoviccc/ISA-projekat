@@ -15,10 +15,6 @@ public class AdventureDTO extends BaseDTO {
 
     protected String address;
 
-    protected Double lagitude;
-
-    protected Double longitude;
-
     protected String description;
 
     protected String biography;
@@ -33,15 +29,9 @@ public class AdventureDTO extends BaseDTO {
 
     protected String fishingEquipment;
 
-    protected boolean isFreeCancelation;
+    protected Boolean isFreeCancelation;
 
     protected Double cancelationPercent;
-
-    protected String location;
-
-    protected int standing;
-
-    protected String additionalServices;
 
     protected Double price;
 
