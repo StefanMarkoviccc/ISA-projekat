@@ -1,85 +1,81 @@
 package app.isa.service;
 
-import app.isa.domain.dto.DTO.AppointmentDTO;
-import app.isa.domain.dto.converters.AppointmentConverter;
-import app.isa.domain.model.Appointment;
-import app.isa.domain.model.House;
-import app.isa.domain.model.Room;
-import app.isa.repository.AppointmentRepository;
-import app.isa.repository.HouseRepository;
-import app.isa.repository.RoomRepository;
+
+import app.isa.domain.dto.DTO.AdventureDTO;
+import app.isa.domain.dto.converters.AdventureConverter;
+import app.isa.domain.model.Adventure;
+import app.isa.repository.AdventureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class AdventureServiceImplementation implements AppointmentService {
+@Service
+public class AdventureServiceImplementation implements AdventureService {
 
     @Autowired
-    private AppointmentRepository appointmentRepository;
+    private AdventureRepository adventureRepository;
 
-    @Autowired
-    private HouseRepository houseRepository;
 
-    @Autowired
-    private RoomRepository roomRepository;
+    public Adventure add(AdventureDTO adventureDTO) {
+        Adventure adventure = AdventureConverter.fromDTO(adventureDTO);
 
-    public Appointment add(AppointmentDTO appointmentDTO) {
-        Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
-        Optional<House> house = houseRepository.findById(appointmentDTO.getHouseId());
-        appointment.setHouse(house.get());
-        Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
-        appointment.setRoom(room.get());
-        return appointmentRepository.save(appointment);
+
+        return adventureRepository.save(adventure);
     }
 
     public boolean deleted(Long id) {
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        Optional<Adventure> adventure = adventureRepository.findById(id);
 
-        if (appointment.isEmpty()) {
+        if (adventure.isEmpty()) {
             return false;
         }
 
-        appointment.get().setDeleted(true);
-        appointmentRepository.save(appointment.get());
+        adventure.get().setDeleted(true);
+        adventureRepository.save(adventure.get());
         return true;
     }
 
     @Override
-    public List<Appointment> getList() {
-        return appointmentRepository.findAll();
+    public List<Adventure> getList() {
+        return adventureRepository.findAll();
     }
 
     @Override
-    public Appointment getAppointment(Long id) {
+    public Adventure getAdventure(Long id) {
 
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        Optional<Adventure> adventure = adventureRepository.findById(id);
 
-        if (appointment.isEmpty()) {
+        if (adventure.isEmpty()) {
             return null;
         }
 
-        return appointment.get();
+        return adventure.get();
     }
 
     @Override
-    public Appointment edit(Long id, AppointmentDTO appointmentDTO) {
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
+    public Adventure edit(Long id, AdventureDTO adventureDTO) {
+        Optional<Adventure> adventure = adventureRepository.findById(id);
 
-        if (appointment.isEmpty()) {
+        if (adventure.isEmpty()) {
             return null;
         }
-        Appointment appointment1 = AppointmentConverter.fromDTO(appointmentDTO);
+        Adventure adventure1 = AdventureConverter.fromDTO(adventureDTO);
 
-        appointment.get().setAction(appointment1.isAction());
-        appointment.get().setMaxPersons(appointment1.getMaxPersons());
-        appointment.get().setAppointmentDate(appointment1.getAppointmentDate());
-        appointment.get().setDeleted(appointment1.isDeleted());
-        appointment.get().setDuration(appointment1.getDuration());
-        appointment.get().setPrice(appointment1.getPrice());
-        appointment.get().setHouse(appointment1.getHouse());
-        appointment.get().setRoom(appointment1.getRoom());
+        adventure.get().setName(adventure1.getName());
+        adventure.get().setAddress(adventure1.getAddress());
+        adventure.get().setDescription(adventure1.getDescription());
+        adventure.get().setBiography(adventure1.getBiography());
+        adventure.get().setMaxNumberOfPeople(adventure1.getMaxNumberOfPeople());
+        adventure.get().setAdventurePictures(adventure1.getAdventurePictures());
+        adventure.get().setAdventureAppointment(adventure1.getAdventureAppointment());
+        adventure.get().setRules(adventure1.getRules());
+        adventure.get().setFishingEquipment(adventure1.getFishingEquipment());
+        adventure.get().setPrice(adventure1.getPrice());
+        adventure.get().setIsFreeCancelation(adventure1.getIsFreeCancelation());
+        adventure.get().setCancelationPercent(adventure1.getCancelationPercent());
 
-        return appointmentRepository.save(appointment.get());
+        return adventureRepository.save(adventure.get());
     }
 }
