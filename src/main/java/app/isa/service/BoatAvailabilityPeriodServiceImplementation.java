@@ -8,9 +8,11 @@ import app.isa.domain.model.HouseAvailabilityPeriod;
 import app.isa.repository.BoatAvailabilityPeriodRepository;
 import app.isa.repository.BoatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BoatAvailabilityPeriodServiceImplementation implements BoatAvailabilityPeriodService{
 
     @Autowired

@@ -135,6 +135,7 @@ insert into `user` (`id`, `email`, `password`, `first_name`, `last_name`, `addre
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (1,'Maximus', 'SeaDOO', '5', '2', '200', '300', 'Danila Kisa 23', 'opisopisopis', '5', 'nesto', 'YES', 0);
 insert into `boat` (`id`, `name`, `type`, `length`, `engine_number`, `engine_power`, `max_speed`, `address`, `promotional_description`, `capacity`, `rules_of_conduct`, `fishing_equipment`, `deleted`) values (2,'Koleos', 'Yamaha', '12', '4', '200', '200', 'Milosa Parovica 36', 'opis', '12', 'nestoo', 'NO', 0);
 
+insert into `house` (`id`, `user_id`, `name`, `address`, `geographical_width`, `geographical_length`, `description`, `rules_of_conduct`, `availability_period`, `average`, `deleted`) values (1,2, 'Bojana', 'Veselina Maslese', '1234', '4321', 'Opis kuce', 'Nema pusenja', 'sve zauzeto', '5', 0);
 
 
 insert into `adventure` (`id`, `name`, `address`, `description`, `biography`, `max_number_of_people`, `adventure_appointment`, `rules`, `fishing_equipment`,`price`,`deleted`) values (1,'Tara', 'Bulevar Patrijarha Pavla 30', 'Rafting', 'Many years of experience with the river, people ..', 'For one round 15.', '21.05.2022.-26.05.2022.', 'Obedience, devotion.', 'Diving equipment', '120', 0);
