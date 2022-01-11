@@ -2,7 +2,9 @@ package app.isa.service;
 
 import app.isa.domain.dto.DTO.RoomDTO;
 import app.isa.domain.dto.converters.RoomConverter;
+import app.isa.domain.model.House;
 import app.isa.domain.model.Room;
+import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class RoomServiceImplementation implements RoomService{
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private HouseRepository houseRepository;
 
     public List<Room> getList() {
         return roomRepository.findAll();
@@ -52,6 +56,9 @@ public class RoomServiceImplementation implements RoomService{
 
     public Room add(RoomDTO roomDTO) {
         Room room= RoomConverter.fromDTO(roomDTO);
+        House house = houseRepository.getById(roomDTO.getHouseId());
+        room.setHouse(house);
+
         return roomRepository.save(room);
     }
 

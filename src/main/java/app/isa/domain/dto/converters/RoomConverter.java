@@ -25,7 +25,9 @@ public class RoomConverter {
         roomDTO.setId(room.getId());
         roomDTO.setRoomNumber(room.getRoomNumber());
         roomDTO.setNumberOfBeds(room.getNumberOfBeds());
-        roomDTO.setHouseId(room.getHouse().getId());
+        if(room.getHouse() != null){
+            roomDTO.setHouseId(room.getHouse().getId());
+        }
 
         return roomDTO;
     }
