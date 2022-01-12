@@ -23,6 +23,6 @@ public class ActionBoat extends  BaseEntity {
 
     private double price;
 
-    private String AdditionalServices;
+    private String additionalServices;
 
 }

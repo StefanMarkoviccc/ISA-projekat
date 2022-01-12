@@ -29,4 +29,7 @@ public class BoatAppointment extends BaseEntity{
 
     private double price;
 
+    private String additionalServices;
+
+
 }
