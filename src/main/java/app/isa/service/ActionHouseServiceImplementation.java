@@ -40,9 +40,6 @@ public class ActionHouseServiceImplementation implements ActionHouseService {
         actionHouse.setHouse(house.get());
         Optional<Room> room = roomRepository.findById(actionHouseDTO.getRoomId());
         actionHouse.setRoom(room.get());
-
-        actionHouseService.add(actionHouseDTO);
-
         return actionHouseRepository.save(actionHouse);
     }
 

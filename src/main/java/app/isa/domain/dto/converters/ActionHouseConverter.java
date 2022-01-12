@@ -14,7 +14,7 @@ public class ActionHouseConverter {
         actionHouse.setId(actionHouseDTO.getId());
         actionHouse.setDateFrom(actionHouseDTO.getDateFrom());
         actionHouse.setDateTo(actionHouseDTO.getDateTo());
-        actionHouse.setPrice(actionHouse.getPrice());
+        actionHouse.setPrice(actionHouseDTO.getPrice());
 
         return actionHouse;
     }
@@ -25,6 +25,7 @@ public class ActionHouseConverter {
         actionHouseDTO.setId(actionHouse.getId());
         actionHouseDTO.setDateFrom(actionHouse.getDateFrom());
         actionHouseDTO.setDateTo(actionHouse.getDateTo());
+        actionHouseDTO.setPrice(actionHouse.getPrice());
 
         return  actionHouseDTO;
     }
