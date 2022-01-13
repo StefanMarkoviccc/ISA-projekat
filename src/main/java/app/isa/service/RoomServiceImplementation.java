@@ -24,6 +24,13 @@ public class RoomServiceImplementation implements RoomService{
         return roomRepository.findAll();
     }
 
+    @Override
+    public List<Room> getRoomByHouse(Long id) {
+        House house = houseRepository.getById(id);
+
+        return roomRepository.getAllByHouse(house);
+    }
+
 
     public Room getRoom(Long id) {
         Optional<Room> room = roomRepository.findById(id);

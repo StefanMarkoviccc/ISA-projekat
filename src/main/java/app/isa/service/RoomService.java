@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface RoomService {
     List<Room> getList();
+    List<Room> getRoomByHouse(Long id);
     Room  getRoom(Long id);
     Room edit(Long id, RoomDTO roomDTO);
     Room add(RoomDTO roomDTO);

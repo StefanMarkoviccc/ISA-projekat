@@ -1,6 +1,8 @@
 package app.isa.controller;
 
+import app.isa.domain.dto.DTO.HouseAvailabilityPeriodDTO;
 import app.isa.domain.dto.DTO.RoomDTO;
+import app.isa.domain.dto.converters.HouseAvailabilityConverter;
 import app.isa.domain.dto.converters.RoomConverter;
 import app.isa.domain.model.Room;
 import app.isa.service.RoomService;
@@ -20,6 +22,11 @@ public class RoomController {
     @GetMapping
     public ResponseEntity<List<RoomDTO>> getRooms(){
         return new ResponseEntity<List<RoomDTO>>(RoomConverter.toDTOList(roomService.getList()), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/house/{id}")
+    public ResponseEntity<List<RoomDTO>> getForHouse(@PathVariable Long id){
+        return new ResponseEntity<List<RoomDTO>>(RoomConverter.toDTOList(roomService.getRoomByHouse(id)), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")

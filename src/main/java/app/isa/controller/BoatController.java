@@ -25,7 +25,7 @@ public class BoatController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<BoatDTO> getHouse(@PathVariable Long id){
+    public ResponseEntity<BoatDTO> getBoat(@PathVariable Long id){
 
         Boat boat = boatService.getBoat(id);
         if (boat == null){
