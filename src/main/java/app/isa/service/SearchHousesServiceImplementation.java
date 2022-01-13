@@ -31,6 +31,11 @@ public class SearchHousesServiceImplementation implements SearchHousesService{
 
         for(HouseAvailabilityPeriod hap : houseAvailabilityPeriodRepository.findAll()){
 
+            System.out.println("==================");
+            System.out.println(startDate.after(hap.getDateFrom()));
+            System.out.println(endDate.before(hap.getDateTo()));
+            System.out.println((startDate.after(hap.getDateFrom()) && endDate.before(hap.getDateTo())));
+
             if(!(startDate.after(hap.getDateFrom()) && endDate.before(hap.getDateTo()))) {
                 continue;
             }
