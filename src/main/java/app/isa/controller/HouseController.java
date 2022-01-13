@@ -1,9 +1,11 @@
 package app.isa.controller;
 
 import app.isa.domain.dto.DTO.HouseDTO;
+import app.isa.domain.dto.DTO.SearchHousesDTO;
 import app.isa.domain.dto.converters.HouseConverter;
 import app.isa.domain.model.House;
 import app.isa.service.HouseService;
+import app.isa.service.SearchHousesService;
 import org.hibernate.query.QueryParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class HouseController {
 
     @Autowired
     private HouseService houseService;
+
+    @Autowired
+    private SearchHousesService searchHousesService;
 
     @GetMapping
     public ResponseEntity<List<HouseDTO>> getHouses(@RequestParam String search){
@@ -44,6 +49,11 @@ public class HouseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HouseConverter.toDTO(house),HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/search")
+    public ResponseEntity<?> searchByDate(@RequestBody SearchHousesDTO searchHousesDTO){
+        return new ResponseEntity<>(searchHousesService.getBySearchDate(searchHousesDTO.getStartDate(), searchHousesDTO.getEndDate()), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{id}")
