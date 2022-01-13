@@ -1,5 +1,6 @@
 package app.isa.domain.model;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,8 +13,11 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Appointment extends BaseEntity{
+public class ActionHouse extends  BaseEntity{
 
+    private Date dateTo;
+
+    private Date dateFrom;
 
     @ManyToOne
     private House house;
@@ -21,15 +25,5 @@ public class Appointment extends BaseEntity{
     @ManyToOne
     private Room room;
 
-    private Date appointmentDate;
-
-    private boolean isAction = false;
-
-    private int duration;
-
-    private int maxPersons;
-
     private double price;
-
-    private String AdditionalServices;
 }

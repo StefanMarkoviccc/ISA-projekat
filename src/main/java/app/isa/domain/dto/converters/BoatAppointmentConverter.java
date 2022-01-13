@@ -16,6 +16,7 @@ public class BoatAppointmentConverter {
         boatAppointment.setDuration(boatAppointmentDTO.getDuration());
         boatAppointment.setMaxPersons(boatAppointmentDTO.getMaxPersons());
         boatAppointment.setPrice(boatAppointmentDTO.getPrice());
+        boatAppointment.setAdditionalServices(boatAppointmentDTO.getAdditionalServices());
         boatAppointment.setBoat(null);
 
         return  boatAppointment;
@@ -25,12 +26,13 @@ public class BoatAppointmentConverter {
         BoatAppointmentDTO boatAppointmentDTO= new BoatAppointmentDTO();
 
         boatAppointmentDTO.setId(boatAppointment.getId());
-        boatAppointmentDTO.setBoatID(boatAppointment.getBoat().getId());
+        boatAppointmentDTO.setBoatId(boatAppointment.getBoat().getId());
         boatAppointmentDTO.setDate(boatAppointment.getDate());
         boatAppointmentDTO.setAction(boatAppointment.isAction());
         boatAppointmentDTO.setDuration(boatAppointment.getDuration());
         boatAppointmentDTO.setMaxPersons(boatAppointment.getMaxPersons());
         boatAppointmentDTO.setPrice(boatAppointment.getPrice());
+        boatAppointmentDTO.setAdditionalServices(boatAppointment.getAdditionalServices());
 
         return boatAppointmentDTO;
     }

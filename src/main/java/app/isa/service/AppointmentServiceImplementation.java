@@ -1,6 +1,7 @@
 package app.isa.service;
 
 import app.isa.domain.dto.DTO.AppointmentDTO;
+import app.isa.domain.dto.DTO.HouseAvailabilityPeriodDTO;
 import app.isa.domain.dto.converters.AppointmentConverter;
 import app.isa.domain.model.Appointment;
 import app.isa.domain.model.House;
@@ -12,11 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AppointmentServiceImplementation implements AppointmentService{
+
+    @Autowired
+    private HouseAvailabilityPeriodService houseAvailabilityPeriodService;
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -33,6 +39,22 @@ public class AppointmentServiceImplementation implements AppointmentService{
         appointment.setHouse(house.get());
         Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
         appointment.setRoom(room.get());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(appointmentDTO.getDate());
+
+        calendar.add(Calendar.DAY_OF_WEEK, appointmentDTO.getDuration());
+
+        Date dateT0 = calendar.getTime();
+
+        HouseAvailabilityPeriodDTO houseAvailabilityPeriodDTO = new HouseAvailabilityPeriodDTO();
+        houseAvailabilityPeriodDTO.setHouseId(appointmentDTO.getHouseId());
+        houseAvailabilityPeriodDTO.setDateFrom(appointmentDTO.getDate());
+        houseAvailabilityPeriodDTO.setDateTo(dateT0);
+
+        houseAvailabilityPeriodService.add(houseAvailabilityPeriodDTO);
+
+
         return appointmentRepository.save(appointment);
     }
 

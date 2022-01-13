@@ -2,8 +2,11 @@ package app.isa.service;
 
 import app.isa.domain.dto.DTO.BoatAppointmentDTO;
 import app.isa.domain.dto.converters.BoatAppointmentConverter;
+import app.isa.domain.model.Boat;
 import app.isa.domain.model.BoatAppointment;
+import app.isa.domain.model.House;
 import app.isa.repository.BoatAppointmentRepository;
+import app.isa.repository.BoatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,9 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
 
     @Autowired
     private BoatAppointmentRepository boatAppointmentRepository;
+
+    @Autowired
+    private BoatRepository boatRepository;
 
     @Override
     public List<BoatAppointment> getList() {
@@ -35,7 +41,8 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
     @Override
     public BoatAppointment add(BoatAppointmentDTO boatAppointmentDTO) {
         BoatAppointment boatAppointment = BoatAppointmentConverter.fromDTO(boatAppointmentDTO);
-
+        Optional<Boat> boat = boatRepository.findById(boatAppointmentDTO.getBoatId());
+        boatAppointment.setBoat(boat.get());
         return boatAppointmentRepository.save(boatAppointment);
     }
 }

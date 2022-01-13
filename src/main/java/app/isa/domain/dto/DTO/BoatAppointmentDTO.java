@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class BoatAppointmentDTO extends BaseDTO {
 
-    protected Long boatID;
+    protected Long boatId;
 
     protected Date date;
 
@@ -24,4 +24,7 @@ public class BoatAppointmentDTO extends BaseDTO {
     protected int maxPersons;
 
     protected double price;
+
+    protected String additionalServices;
+
 }
