@@ -29,18 +29,18 @@ public class SearchHousesServiceImplementation implements SearchHousesService{
         List<House> results = new ArrayList<>();
 
 
-        for(HouseAvailabilityPeriod hap : houseAvailabilityPeriodRepository.findAll()){
+        for (HouseAvailabilityPeriod hap : houseAvailabilityPeriodRepository.findAll()) {
 
             System.out.println("==================");
             System.out.println(startDate.after(hap.getDateFrom()));
             System.out.println(endDate.before(hap.getDateTo()));
             System.out.println((startDate.after(hap.getDateFrom()) && endDate.before(hap.getDateTo())));
 
-            if(!(startDate.after(hap.getDateFrom()) && endDate.before(hap.getDateTo()))) {
+            if (!(startDate.after(hap.getDateFrom()) && endDate.before(hap.getDateTo()))) {
                 continue;
             }
 
-            if(isAlreadyTaken(hap.getHouse(), startDate, endDate)) {
+            if (isAlreadyTaken(hap.getHouse(), startDate, endDate)) {
                 continue;
             }
 
@@ -49,11 +49,32 @@ public class SearchHousesServiceImplementation implements SearchHousesService{
         return results;
     }
 
-    private boolean isAlreadyTaken(House house, Date startDate, Date endDate) {
+    public boolean isAlreadyTaken(House house, Date startDate, Date endDate) {
 
         for(Appointment app: appointmentRepository.findAll()) {
 
             if(!app.getHouse().getId().equals(house.getId())) {
+                continue;
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(startDate);
+
+            calendar.add(Calendar.DAY_OF_WEEK, app.getDuration());
+            Date appEndDate = calendar.getTime();
+
+            if(startDate.after(app.getAppointmentDate()) && endDate.before(appEndDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isHouseTaken(Long id, Date startDate, Date endDate) {
+
+        for(Appointment app: appointmentRepository.findAll()) {
+
+            if(!app.getHouse().getId().equals(id)) {
                 continue;
             }
 
