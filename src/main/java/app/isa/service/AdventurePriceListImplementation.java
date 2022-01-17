@@ -9,11 +9,13 @@ import app.isa.repository.AppointmentRepository;
 import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class AdventurePriceListImplementation implements AppointmentService {
+@Service
+public class AdventurePriceListImplementation implements AdventurePriceListService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;

@@ -21,6 +21,9 @@ public class Appointment extends BaseEntity{
     @ManyToOne
     private Room room;
 
+    @ManyToOne
+    private User client;
+
     private Date appointmentDate;
 
     private boolean isAction = false;
