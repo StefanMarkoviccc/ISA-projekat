@@ -15,5 +15,6 @@ import javax.persistence.ManyToOne;
 public class Complain extends BaseEntity {
 
     private String text;
+
     private ComplainType complainType;
 }
