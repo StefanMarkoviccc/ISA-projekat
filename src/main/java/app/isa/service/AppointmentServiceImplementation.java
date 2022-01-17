@@ -5,8 +5,10 @@ import app.isa.domain.dto.DTO.HouseAvailabilityPeriodDTO;
 import app.isa.domain.dto.converters.AppointmentConverter;
 import app.isa.domain.model.Appointment;
 import app.isa.domain.model.House;
+import app.isa.domain.model.HouseAvailabilityPeriod;
 import app.isa.domain.model.Room;
 import app.isa.repository.AppointmentRepository;
+import app.isa.repository.HouseAvailabilityPeriodRepository;
 import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class AppointmentServiceImplementation implements AppointmentService{
     private HouseAvailabilityPeriodService houseAvailabilityPeriodService;
 
     @Autowired
+    private HouseAvailabilityPeriodRepository houseAvailabilityPeriodRepository;
+
+    @Autowired
     private AppointmentRepository appointmentRepository;
 
     @Autowired
@@ -40,6 +45,12 @@ public class AppointmentServiceImplementation implements AppointmentService{
         Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
         appointment.setRoom(room.get());
 
+        if(appointmentDTO.isAction()){
+            appointment.setAction(true);
+            appointment.setTaken(false);
+            appointment.setPriceForAction(appointmentDTO.getPrice());
+        }
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(appointmentDTO.getDate());
 
@@ -47,12 +58,24 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
         Date dateT0 = calendar.getTime();
 
-        HouseAvailabilityPeriodDTO houseAvailabilityPeriodDTO = new HouseAvailabilityPeriodDTO();
-        houseAvailabilityPeriodDTO.setHouseId(appointmentDTO.getHouseId());
-        houseAvailabilityPeriodDTO.setDateFrom(appointmentDTO.getDate());
-        houseAvailabilityPeriodDTO.setDateTo(dateT0);
+       for(HouseAvailabilityPeriod period: houseAvailabilityPeriodRepository.findAll()){
 
-        houseAvailabilityPeriodService.add(houseAvailabilityPeriodDTO);
+           if(!appointment.getHouse().getId().equals(appointment.getHouse().getId())) {
+                   continue;
+               }
+
+               Calendar calendar1 = Calendar.getInstance();
+               calendar1.setTime(appointment.getAppointmentDate());
+
+               calendar1.add(Calendar.DAY_OF_WEEK, appointment.getDuration());
+               Date appEndDate = calendar1.getTime();
+
+               if(appointment.getAppointmentDate().after(period.getDateFrom()) && appEndDate.before(period.getDateTo())) {
+                   period.setDeleted(true);
+               }
+
+       }
+
 
 
         return appointmentRepository.save(appointment);

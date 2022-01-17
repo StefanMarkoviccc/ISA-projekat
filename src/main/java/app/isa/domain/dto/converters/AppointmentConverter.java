@@ -17,6 +17,8 @@ public class AppointmentConverter {
         appointment.setDuration(appointmentDTO.getDuration());
         appointment.setMaxPersons(appointmentDTO.getMaxPersons());
         appointment.setPrice(appointmentDTO.getPrice());
+        appointment.setPriceForAction(appointmentDTO.getPriceForAction());
+        appointment.setTaken(appointmentDTO.isTaken());
         appointment.setHouse(null);
         appointment.setRoom(null);
 
@@ -34,6 +36,8 @@ public class AppointmentConverter {
         appointmentDTO.setDuration(appointment.getDuration());
         appointmentDTO.setMaxPersons(appointment.getMaxPersons());
         appointmentDTO.setPrice(appointment.getPrice());
+        appointmentDTO.setTaken(appointment.isTaken());
+        appointmentDTO.setPriceForAction(appointment.getPriceForAction());
 
         return appointmentDTO;
     }

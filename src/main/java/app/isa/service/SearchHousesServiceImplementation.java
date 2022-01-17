@@ -88,6 +88,18 @@ public class SearchHousesServiceImplementation implements SearchHousesService{
                 return true;
             }
         }
+
+        for(HouseAvailabilityPeriod period: houseAvailabilityPeriodRepository.findAll()){
+            if(!period.getHouse().getId().equals(id)){
+                continue;
+            }
+
+            Date periodEndDate = period.getDateTo();
+
+            if(startDate.after(period.getDateFrom()) && endDate.before(periodEndDate)) {
+                return true;
+            }
+        }
         return false;
     }
 }
