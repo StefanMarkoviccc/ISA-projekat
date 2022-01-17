@@ -6,9 +6,11 @@ import app.isa.domain.dto.converters.AppointmentConverter;
 import app.isa.domain.model.Appointment;
 import app.isa.domain.model.House;
 import app.isa.domain.model.Room;
+import app.isa.domain.model.User;
 import app.isa.repository.AppointmentRepository;
 import app.isa.repository.HouseRepository;
 import app.isa.repository.RoomRepository;
+import app.isa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,12 +35,17 @@ public class AppointmentServiceImplementation implements AppointmentService{
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public Appointment add(AppointmentDTO appointmentDTO){
         Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
         Optional<House> house = houseRepository.findById(appointmentDTO.getHouseId());
         appointment.setHouse(house.get());
         Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
         appointment.setRoom(room.get());
+        Optional<User> user = userRepository.findById(appointmentDTO.getClientId());
+        appointment.setClient(user.get());
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(appointmentDTO.getDate());
@@ -105,5 +112,10 @@ public class AppointmentServiceImplementation implements AppointmentService{
         appointment.get().setRoom(appointment1.getRoom());
 
         return appointmentRepository.save(appointment.get());
+    }
+
+    @Override
+    public List<Appointment> getByUser(Long id) {
+        return appointmentRepository.getByClient(userRepository.getById(id));
     }
 }

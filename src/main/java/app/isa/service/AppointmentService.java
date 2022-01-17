@@ -12,4 +12,5 @@ public interface AppointmentService {
     List<Appointment> getList();
     Appointment getAppointment(Long id);
     Appointment edit(Long id, AppointmentDTO appointmentDTO);
+    List<Appointment> getByUser(Long id);
 }

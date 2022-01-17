@@ -23,6 +23,16 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
+    @GetMapping(path = "/user/{id}")
+    public ResponseEntity<List<AppointmentDTO>> getByUser(@PathVariable Long id){
+        List<Appointment> appointments = appointmentService.getByUser(id);
+
+        if(appointments.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentDTO> add(@RequestBody AppointmentDTO appointmentDTO){
         Appointment appointment = appointmentService.add(appointmentDTO);

@@ -1,5 +1,6 @@
 package app.isa.domain.dto.DTO;
 
+import app.isa.domain.model.House;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,11 @@ public class AppointmentDTO extends BaseDTO {
 
     protected Long houseId;
 
+    protected House house;
+
     protected Long roomId;
+
+    protected Long clientId;
 
     protected Date date;
 
