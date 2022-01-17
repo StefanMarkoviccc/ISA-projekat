@@ -36,6 +36,11 @@ public class UserController {
         return new ResponseEntity<List<UserDTO>>(UserConverter.toDTOList(userService.getList()), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/clients")
+    public  ResponseEntity<List<UserDTO>> getClients() {
+        return new ResponseEntity<List<UserDTO>>(UserConverter.toDTOList(userService.getCliens()), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
 

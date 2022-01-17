@@ -33,6 +33,16 @@ public class AppointmentController {
         return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/house/{id}")
+    public  ResponseEntity<List<AppointmentDTO>> getByHouse(@PathVariable Long id){
+        List<Appointment> appointments = appointmentService.getByHouse(id);
+
+        if(appointments.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentDTO> add(@RequestBody AppointmentDTO appointmentDTO){
         Appointment appointment = appointmentService.add(appointmentDTO);

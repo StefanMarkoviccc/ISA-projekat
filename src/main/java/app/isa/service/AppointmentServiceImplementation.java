@@ -141,4 +141,9 @@ public class AppointmentServiceImplementation implements AppointmentService{
     public List<Appointment> getByUser(Long id) {
         return appointmentRepository.getByClient(userRepository.getById(id));
     }
+
+    @Override
+    public List<Appointment> getByHouse(Long id) {
+        return appointmentRepository.getByHouse(houseRepository.getById(id));
+    }
 }
