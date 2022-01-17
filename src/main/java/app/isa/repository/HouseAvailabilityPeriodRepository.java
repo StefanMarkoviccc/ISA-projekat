@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface HouseAvailabilityPeriodRepository extends JpaRepository<HouseAvailabilityPeriod, Long> {
-    List<HouseAvailabilityPeriod> getAllByHouse(House house);
+    List<HouseAvailabilityPeriod> getAllByHouseAndDeleted(House house, Boolean deleted);
 }

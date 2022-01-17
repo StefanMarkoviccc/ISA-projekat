@@ -26,7 +26,7 @@ public class HouseAvailabilityPeriodServiceImplementation implements HouseAvaila
     public List<HouseAvailabilityPeriod> getForHouse(Long id) {
         House house = houseRepository.getById(id);
 
-        return houseAvailabilityPeriodRepository.getAllByHouse(house);
+        return houseAvailabilityPeriodRepository.getAllByHouseAndDeleted(house,false);
     }
 
     @Override
