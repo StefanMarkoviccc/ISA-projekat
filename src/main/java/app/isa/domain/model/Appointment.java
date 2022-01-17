@@ -35,4 +35,8 @@ public class Appointment extends BaseEntity{
     private double price;
 
     private String additionalServices;
+
+    private double priceForAction = 0;
+
+    private boolean isTaken = true;
 }

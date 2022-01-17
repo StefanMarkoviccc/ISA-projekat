@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface SearchHousesService {
     List<House> getBySearchDate(Date startDate, Date endDate);
+    boolean isHouseTaken(Long id, Date startDate, Date endDate);
 }

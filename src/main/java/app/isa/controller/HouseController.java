@@ -56,6 +56,12 @@ public class HouseController {
         return new ResponseEntity<>(searchHousesService.getBySearchDate(searchHousesDTO.getStartDate(), searchHousesDTO.getEndDate()), HttpStatus.OK);
     }
 
+
+    @PostMapping(path = "/house/{id}")
+    public ResponseEntity<?> isHouseTaken(@RequestBody Long id, @RequestBody SearchHousesDTO searchHousesDTO){
+        return  new ResponseEntity<>(searchHousesService.isHouseTaken(id,searchHousesDTO.getStartDate(), searchHousesDTO.getEndDate()), HttpStatus.OK);
+    }
+
     @PutMapping(path = "/{id}")
     public ResponseEntity<HouseDTO> edit(@PathVariable Long id, @RequestBody HouseDTO houseDTO){
         House house = houseService.edit(id,houseDTO);
