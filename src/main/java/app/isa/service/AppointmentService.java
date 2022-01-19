@@ -14,4 +14,6 @@ public interface AppointmentService {
     Appointment edit(Long id, AppointmentDTO appointmentDTO);
     List<Appointment> getByUser(Long id);
     List<Appointment> getByHouse(Long id);
+    List<Appointment> getActionsByHouse(Long id);
+    boolean isReservationFinished(Long id);
 }

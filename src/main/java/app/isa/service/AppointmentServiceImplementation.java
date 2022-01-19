@@ -17,10 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AppointmentServiceImplementation implements AppointmentService{
@@ -74,24 +71,29 @@ public class AppointmentServiceImplementation implements AppointmentService{
         calendar.add(Calendar.DAY_OF_WEEK, appointmentDTO.getDuration());
 
         Date dateT0 = calendar.getTime();
+        Date dateFrom = appointment.getAppointmentDate();
 
-       for(HouseAvailabilityPeriod period: houseAvailabilityPeriodRepository.findAll()){
+        List<HouseAvailabilityPeriod> periods = houseAvailabilityPeriodRepository.getAllByHouseAndDeleted((houseRepository.findById(appointmentDTO.getHouseId()).get()), false);
 
-           if(!appointment.getHouse().getId().equals(appointment.getHouse().getId())) {
-                   continue;
-               }
+        if(periods.isEmpty() && !appointment.isAction()){
+            return null;
+        } else {
+            for(HouseAvailabilityPeriod period:periods){
 
-               Calendar calendar1 = Calendar.getInstance();
-               calendar1.setTime(appointment.getAppointmentDate());
+                if(!appointment.getHouse().getId().equals(appointment.getHouse().getId())) {
+                    continue;
+                }
 
-               calendar1.add(Calendar.DAY_OF_WEEK, appointment.getDuration());
-               Date appEndDate = calendar1.getTime();
+                if(dateFrom.after(period.getDateFrom()) && dateT0.before(period.getDateTo())) {
+                    period.setDeleted(true);
+                } else {
+                    return null;
+                }
 
-               if(appointment.getAppointmentDate().after(period.getDateFrom()) && appEndDate.before(period.getDateTo())) {
-                   period.setDeleted(true);
-               }
 
-       }
+            }
+        }
+
 
         if(appointmentDTO.isAction()){
             emailService.sendActionEmail(userService.getCliens());
@@ -156,6 +158,49 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
     @Override
     public List<Appointment> getByHouse(Long id) {
-        return appointmentRepository.getByHouse(houseRepository.getById(id));
+
+        List<Appointment> appointments = new ArrayList<Appointment>();
+
+        for(Appointment a: appointmentRepository.getByHouse(houseRepository.getById(id))){
+            if(!a.isAction()){
+                appointments.add(a);
+            }
+        }
+        return appointments;
+    }
+
+    @Override
+    public List<Appointment> getActionsByHouse(Long id) {
+
+        List<Appointment> actions = new ArrayList<Appointment>();
+
+        for (Appointment a: appointmentRepository.getAllByHouseAndDeleted(houseRepository.findById(id).get(), false)){
+            if(a.isAction())
+            {
+                actions.add(a);
+            }
+        }
+        return actions;
+    }
+
+    @Override
+    public boolean isReservationFinished(Long id) {
+
+        Appointment a = appointmentRepository.findById(id).get();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(a.getAppointmentDate());
+
+        calendar.add(Calendar.DAY_OF_WEEK, a.getDuration());
+
+        Date dateT0 = calendar.getTime();
+        Date dateFrom = a.getAppointmentDate();
+
+
+        if(dateT0.after(Calendar.getInstance().getTime())){
+            return true;
+        }
+
+        return false;
     }
 }
