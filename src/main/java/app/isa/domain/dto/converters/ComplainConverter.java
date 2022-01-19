@@ -14,6 +14,8 @@ public class ComplainConverter {
         complain.setId(complainDTO.getId());
         complain.setText(complainDTO.getText());
         complain.setComplainType(complainDTO.getComplainType());
+        complain.setHouseId(complainDTO.getHouseId());
+        complain.setUserId(complainDTO.getUserId());
         return complain;
     }
 
@@ -22,6 +24,8 @@ public class ComplainConverter {
         complainDTO.setId(complain.getId());
         complainDTO.setText(complain.getText());
         complainDTO.setComplainType(complain.getComplainType());
+        complainDTO.setHouseId(complain.getHouseId());
+        complainDTO.setUserId(complain.getUserId());
         return  complainDTO;
     }
 

@@ -10,6 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ComplainDTO extends BaseDTO{
 
+    protected Long houseId;
     protected String text;
     protected ComplainType complainType;
+    protected Long userId;
 }

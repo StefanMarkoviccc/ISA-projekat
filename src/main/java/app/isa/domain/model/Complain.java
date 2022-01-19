@@ -14,7 +14,8 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Complain extends BaseEntity {
 
+    private Long houseId;
     private String text;
-
     private ComplainType complainType;
+    private Long userId;
 }
