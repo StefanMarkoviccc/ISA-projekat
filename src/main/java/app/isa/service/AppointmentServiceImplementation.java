@@ -43,14 +43,24 @@ public class AppointmentServiceImplementation implements AppointmentService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+
     public Appointment add(AppointmentDTO appointmentDTO){
         Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
         Optional<House> house = houseRepository.findById(appointmentDTO.getHouseId());
         appointment.setHouse(house.get());
         Optional<Room> room = roomRepository.findById(appointmentDTO.getRoomId());
         appointment.setRoom(room.get());
-        Optional<User> user = userRepository.findById(appointmentDTO.getClientId());
-        appointment.setClient(user.get());
+
+
+        if(appointmentDTO.getClientId() != null) {
+            Optional<User> user = userRepository.findById(appointmentDTO.getClientId());
+            appointment.setClient(user.get());
+        }
 
         if(appointmentDTO.isAction()){
             appointment.setAction(true);
@@ -83,7 +93,9 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
        }
 
-
+        if(appointmentDTO.isAction()){
+            emailService.sendActionEmail(userService.getCliens());
+        }
 
         return appointmentRepository.save(appointment);
     }

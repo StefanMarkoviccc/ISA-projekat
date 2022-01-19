@@ -34,13 +34,13 @@ public class AppointmentController {
     }
 
     @GetMapping(path = "/house/{id}")
-    public  ResponseEntity<List<AppointmentDTO>> getByHouse(@PathVariable Long id){
+    public  ResponseEntity<?> getByHouse(@PathVariable Long id){
         List<Appointment> appointments = appointmentService.getByHouse(id);
 
         if(appointments.isEmpty()){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+        return new ResponseEntity<>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
     }
 
     @PostMapping
