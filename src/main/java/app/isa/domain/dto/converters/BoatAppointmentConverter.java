@@ -17,7 +17,10 @@ public class BoatAppointmentConverter {
         boatAppointment.setMaxPersons(boatAppointmentDTO.getMaxPersons());
         boatAppointment.setPrice(boatAppointmentDTO.getPrice());
         boatAppointment.setAdditionalServices(boatAppointmentDTO.getAdditionalServices());
+        boatAppointment.setPriceForAction(boatAppointmentDTO.getPriceForAction());
+        boatAppointment.setTaken(boatAppointmentDTO.isTaken());
         boatAppointment.setBoat(null);
+        boatAppointment.setClient(null);
 
         return  boatAppointment;
     }
@@ -33,6 +36,9 @@ public class BoatAppointmentConverter {
         boatAppointmentDTO.setMaxPersons(boatAppointment.getMaxPersons());
         boatAppointmentDTO.setPrice(boatAppointment.getPrice());
         boatAppointmentDTO.setAdditionalServices(boatAppointment.getAdditionalServices());
+        boatAppointmentDTO.setClientId(boatAppointment.getClient().getId());
+        boatAppointmentDTO.setPriceForAction(boatAppointment.getPriceForAction());
+        boatAppointmentDTO.setTaken(boatAppointment.isTaken());
 
         return boatAppointmentDTO;
     }

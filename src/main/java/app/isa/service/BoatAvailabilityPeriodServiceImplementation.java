@@ -21,14 +21,22 @@ public class BoatAvailabilityPeriodServiceImplementation implements BoatAvailabi
     @Autowired
     private BoatRepository boatRepository;
 
+    @Autowired
+    private SearchBoatService searchBoatService;
+
     @Override
     public List<BoatAvailabilityPeriod> getForBoat(Long id) {
         Boat boat = boatRepository.getById(id);
-        return  boatAvailabilityPeriodRepository.getAllByBoat(boat);
+        return  boatAvailabilityPeriodRepository.getAllByBoatAndDeleted(boat, false);
     }
 
     @Override
     public BoatAvailabilityPeriod add(BoatAvailabilityPeriodDTO boatAvailabilityPeriodDTO) {
+
+        if(searchBoatService.isBoatTaken((boatAvailabilityPeriodDTO.getBoatId()), boatAvailabilityPeriodDTO.getDateFrom(), boatAvailabilityPeriodDTO.getDateTo())){
+            return null;
+        }
+
         Boat boat= boatRepository.getById(boatAvailabilityPeriodDTO.getBoatId());
         BoatAvailabilityPeriod boatAvailabilityPeriod = new BoatAvailabilityPeriod();
         boatAvailabilityPeriod.setDateTo(boatAvailabilityPeriodDTO.getDateTo());
