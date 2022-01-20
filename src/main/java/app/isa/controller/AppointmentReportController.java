@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/appointmentReports")
+
 public class AppointmentReportController {
 
     @Autowired

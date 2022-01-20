@@ -35,6 +35,8 @@ public class AppointementReportServiceImplementation implements AppointmentRepor
         appointmentReport.setClient(client.get());
         Optional<User> owner = userRepository.findById(appointmentReportDTO.getOwnerId());
         appointmentReport.setOwner(owner.get());
+
+
         return appointmentReposrtRepository.save(appointmentReport);
     }
 
