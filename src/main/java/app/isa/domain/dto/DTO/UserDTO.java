@@ -20,4 +20,5 @@ public class UserDTO extends BaseDTO {
     protected String phoneNumber;
     protected UserType userType;
     protected String description;
+    protected boolean onActions;
 }

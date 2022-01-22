@@ -9,7 +9,10 @@ import app.isa.domain.model.UserType;
 import app.isa.repository.ComplainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +36,7 @@ public class ComplainServiceImplementation implements ComplainService {
         return  complain.get();
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Complain add(ComplainDTO complainDTO){
         Complain complain = ComplainConverter.fromDTO(complainDTO);
 

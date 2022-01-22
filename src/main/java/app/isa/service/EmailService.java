@@ -3,19 +3,19 @@ package app.isa.service;
 import app.isa.domain.model.User;
 import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+
 import java.util.List;
 import java.util.Properties;
 
 @Service
 public class EmailService implements IEmailService{
-
-
     @Override
+    public void sendActionEmail(List<User> users) {
+
+    }
+
+
+   /* @Override
     public void sendActionEmail(List<User> users) {
 
         try {
@@ -68,4 +68,6 @@ public class EmailService implements IEmailService{
             System.out.println(ex.getMessage());
         }
     }
+
+    */
 }

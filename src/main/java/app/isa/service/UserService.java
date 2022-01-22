@@ -17,5 +17,5 @@ public interface UserService {
     boolean delete(Long id);
     User getCurrent();
     User changePassword(String password, Long id);
-
+    boolean onAction(Long id);
 }

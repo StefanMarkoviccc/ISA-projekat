@@ -20,6 +20,7 @@ public class UserConverter {
         user.setCountry(userDTO.getCountry());
         user.setPhoneNumber(userDTO.getPhoneNumber());
         user.setDescription(userDTO.getDescription());
+        user.setOnActions(userDTO.isOnActions());
 
         return user;
     }
@@ -37,6 +38,7 @@ public class UserConverter {
         userDTO.setUserType(user.getUserType());
         userDTO.setPhoneNumber(user.getPhoneNumber());
         userDTO.setDescription(user.getDescription());
+        userDTO.setOnActions(user.isOnActions());
 
         return userDTO;
     }

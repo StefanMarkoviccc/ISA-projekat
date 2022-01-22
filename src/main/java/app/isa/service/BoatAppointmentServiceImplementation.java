@@ -9,6 +9,8 @@ import app.isa.repository.BoatRepository;
 import app.isa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -52,6 +54,7 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
         return boatAppointment.get();
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
     public BoatAppointment add(BoatAppointmentDTO boatAppointmentDTO) {
         BoatAppointment boatAppointment = BoatAppointmentConverter.fromDTO(boatAppointmentDTO);

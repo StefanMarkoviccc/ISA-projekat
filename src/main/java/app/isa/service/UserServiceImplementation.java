@@ -103,6 +103,20 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
+    public boolean onAction(Long id) {
+       Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()) {
+            return false;
+        }
+
+        user.get().setOnActions(true);
+        userRepository.save(user.get());
+
+        return true;
+
+    }
+
+    @Override
     public User getCurrent() {
         String email = SecurityUtils.getCurrentUserLogin().get();
 
@@ -116,4 +130,6 @@ public class UserServiceImplementation implements UserService {
 
         return userRepository.save(user);
     }
+
+
 }

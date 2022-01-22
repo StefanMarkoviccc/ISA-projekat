@@ -171,6 +171,15 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping(path = "/actions/{id}")
+    public ResponseEntity<?> onAction(@PathVariable Long id){
+        if(userService.onAction(id)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
     @PostMapping(path = "/login")
     public ResponseEntity<LoginResponceDTO> registerAdministrator(@RequestBody LoginDTO loginDTO) {
         User user = customUserService.findUserByEmail(loginDTO.getEmail());
