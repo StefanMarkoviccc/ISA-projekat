@@ -12,8 +12,10 @@ public interface AppointmentService {
     List<Appointment> getList();
     Appointment getAppointment(Long id);
     Appointment edit(Long id, AppointmentDTO appointmentDTO);
-    List<Appointment> getByUser(Long id);
+    List<Appointment> getByUserAndDelete(Long id);
     List<Appointment> getByHouse(Long id);
     List<Appointment> getActionsByHouse(Long id);
+    List<Appointment> getActions();
     boolean isReservationFinished(Long id);
+    Appointment reservAction(Long id);
 }
