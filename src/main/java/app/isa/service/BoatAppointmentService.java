@@ -12,4 +12,6 @@ public interface BoatAppointmentService {
     BoatAppointment getBoatAppointment(Long id);
     BoatAppointment add(BoatAppointmentDTO boatAppointmentDTO);
     BoatAppointment reservAction(Long id);
+    List<BoatAppointment> getActionsByBoat(Long id);
+
 }
