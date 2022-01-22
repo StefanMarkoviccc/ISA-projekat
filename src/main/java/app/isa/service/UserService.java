@@ -10,10 +10,12 @@ import java.util.List;
 public interface UserService {
 
     List<User> getList();
+    List<User> getCliens();
     User getUser(Long id);
     User register(RegistrationDTO registrationDTO, UserType userType);
     User edit(Long id, UserDTO userDTO);
     boolean delete(Long id);
     User getCurrent();
     User changePassword(String password, Long id);
+
 }

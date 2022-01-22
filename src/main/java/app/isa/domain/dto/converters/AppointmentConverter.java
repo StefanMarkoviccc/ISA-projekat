@@ -42,8 +42,12 @@ public class AppointmentConverter {
         appointmentDTO.setTaken(appointment.isTaken());
         appointmentDTO.setPriceForAction(appointment.getPriceForAction());
 
-        appointmentDTO.setClientId(appointment.getClient().getId());
-        appointmentDTO.setHouse(appointment.getHouse());
+        if(appointment.getClient() != null && appointment.getClient().getId()!=null)
+        {
+            appointmentDTO.setClientId(appointment.getClient().getId());
+            appointmentDTO.setHouse(appointment.getHouse());
+        }
+
 
         return appointmentDTO;
     }

@@ -19,6 +19,9 @@ public class BoatAppointment extends BaseEntity{
     @ManyToOne
     private Boat boat;
 
+    @ManyToOne
+    private User client;
+
     private Date date;
 
     private boolean isAction = false;
@@ -30,6 +33,10 @@ public class BoatAppointment extends BaseEntity{
     private double price;
 
     private String additionalServices;
+
+    private double priceForAction = 0;
+
+    private boolean isTaken = true;
 
 
 }

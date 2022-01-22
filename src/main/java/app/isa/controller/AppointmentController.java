@@ -33,6 +33,31 @@ public class AppointmentController {
         return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/appointment/{id}")
+    public ResponseEntity<?> isReservationFinished(@PathVariable Long id){
+        return new ResponseEntity<>(appointmentService.isReservationFinished(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/house/{id}")
+    public  ResponseEntity<?> getByHouse(@PathVariable Long id){
+        List<Appointment> appointments = appointmentService.getByHouse(id);
+
+        if(appointments.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/actions/{id}")
+    public  ResponseEntity<?> getActionsByHouse(@PathVariable Long id){
+        List<Appointment> appointments = appointmentService.getActionsByHouse(id);
+
+        if(appointments.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentDTO> add(@RequestBody AppointmentDTO appointmentDTO){
         Appointment appointment = appointmentService.add(appointmentDTO);

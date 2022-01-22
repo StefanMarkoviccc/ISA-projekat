@@ -12,6 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class Appointment extends BaseEntity{
 
 

@@ -1,6 +1,8 @@
 package app.isa.repository;
 
 import app.isa.domain.model.Appointment;
+import app.isa.domain.model.House;
+import app.isa.domain.model.HouseAvailabilityPeriod;
 import app.isa.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +14,7 @@ import java.util.Optional;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
     List<Appointment> getByClient(User user);
+    List<Appointment> getByHouse(House house);
+    List<Appointment> getAllByHouseAndDeleted(House house, Boolean deleted);
+
 }

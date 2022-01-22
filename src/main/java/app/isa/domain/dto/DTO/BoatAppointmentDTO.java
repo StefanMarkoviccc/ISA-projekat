@@ -15,6 +15,8 @@ public class BoatAppointmentDTO extends BaseDTO {
 
     protected Long boatId;
 
+    protected Long clientId;
+
     protected Date date;
 
     protected boolean isAction = false;
@@ -26,5 +28,9 @@ public class BoatAppointmentDTO extends BaseDTO {
     protected double price;
 
     protected String additionalServices;
+
+    protected double priceForAction = 0;
+
+    protected boolean isTaken = true;
 
 }

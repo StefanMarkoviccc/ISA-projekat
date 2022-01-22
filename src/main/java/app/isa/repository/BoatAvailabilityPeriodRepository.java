@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BoatAvailabilityPeriodRepository extends JpaRepository<BoatAvailabilityPeriod, Long> {
-    List<BoatAvailabilityPeriod> getAllByBoat(Boat boat);
+    List<BoatAvailabilityPeriod> getAllByBoatAndDeleted(Boat boat, boolean deleted);
 }
