@@ -25,12 +25,23 @@ public class AppointmentController {
 
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<List<AppointmentDTO>> getByUser(@PathVariable Long id){
-        List<Appointment> appointments = appointmentService.getByUser(id);
+        List<Appointment> appointments = appointmentService.getByUserAndDelete(id);
 
         if(appointments.isEmpty()){
             return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/actions")
+    public ResponseEntity<List<AppointmentDTO>> getActions(){
+        List<Appointment> appointments = appointmentService.getActions();
+
+        if(appointments.isEmpty()){
+            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<List<AppointmentDTO>>(AppointmentConverter.toDTOList(appointments), HttpStatus.OK);
+
     }
 
     @GetMapping(path = "/appointment/{id}")
@@ -95,5 +106,15 @@ public class AppointmentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointment), HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/action/{id}")
+    public  ResponseEntity<AppointmentDTO> reservAction(@PathVariable Long id){
+        Appointment appointment = appointmentService.reservAction(id);
+
+        if(appointment == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return  new ResponseEntity<AppointmentDTO>(AppointmentConverter.toDTO(appointment), HttpStatus.CREATED);
     }
 }

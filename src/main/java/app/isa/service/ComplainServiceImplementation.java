@@ -43,7 +43,7 @@ public class ComplainServiceImplementation implements ComplainService {
         List<Appointment> appointments;
         User user = userService.getUser(complain.getUserId());
         if(user.getUserType()== UserType.CLIENT){
-           appointments = appointmentService.getByUser(user.getId());
+           appointments = appointmentService.getByUserAndDelete(user.getId());
            for(Appointment appointment : appointments){
                if(appointment.getHouse().getId()!=complainDTO.getHouseId()) {
                    return null;

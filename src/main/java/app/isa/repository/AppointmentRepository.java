@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-    List<Appointment> getByClient(User user);
+    List<Appointment> getByClientAndDeleted(User user, boolean deleted);
     List<Appointment> getByHouse(House house);
     List<Appointment> getAllByHouseAndDeleted(House house, Boolean deleted);
 

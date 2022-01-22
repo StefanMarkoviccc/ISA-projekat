@@ -53,6 +53,19 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
 
         return boatAppointment.get();
     }
+    @Override
+    public BoatAppointment reservAction(Long id) {
+        Optional<BoatAppointment> appointment = boatAppointmentRepository.findById(id);
+
+        if(appointment.isEmpty()){
+            return null;
+        }
+
+        appointment.get().setTaken(true);
+
+
+        return boatAppointmentRepository.save(appointment.get());
+    }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override

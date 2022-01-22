@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.nio.channels.CancelledKeyException;
 import java.util.*;
 
 @Service
@@ -101,6 +102,19 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
         return appointmentRepository.save(appointment);
     }
+    @Override
+    public Appointment reservAction(Long id) {
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
+
+        if(appointment.isEmpty()){
+            return null;
+        }
+
+        appointment.get().setTaken(true);
+
+
+        return appointmentRepository.save(appointment.get());
+    }
 
     public  boolean deleted(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
@@ -109,7 +123,17 @@ public class AppointmentServiceImplementation implements AppointmentService{
             return false;
         }
 
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(appointment.get().getAppointmentDate());
+        calendar.add(Calendar.DATE, -3);
+        Date lastDayToCancel = calendar.getTime();
+
+        if(lastDayToCancel.before(today))
+            return false;
+
         appointment.get().setDeleted(true);
+
         appointmentRepository.save(appointment.get());
         return true;
     }
@@ -152,9 +176,11 @@ public class AppointmentServiceImplementation implements AppointmentService{
     }
 
     @Override
-    public List<Appointment> getByUser(Long id) {
-        return appointmentRepository.getByClient(userRepository.getById(id));
+    public List<Appointment> getByUserAndDelete(Long id) {
+        return appointmentRepository.getByClientAndDeleted(userRepository.getById(id), false);
     }
+
+
 
     @Override
     public List<Appointment> getByHouse(Long id) {
@@ -184,6 +210,18 @@ public class AppointmentServiceImplementation implements AppointmentService{
     }
 
     @Override
+    public List<Appointment> getActions() {
+        List<Appointment> actions = new ArrayList<Appointment>();
+        for (Appointment a: appointmentRepository.findAll()){
+            if(a.isAction())
+            {
+                actions.add(a);
+            }
+        }
+        return actions;
+    }
+
+    @Override
     public boolean isReservationFinished(Long id) {
 
         Appointment a = appointmentRepository.findById(id).get();
@@ -203,4 +241,6 @@ public class AppointmentServiceImplementation implements AppointmentService{
 
         return false;
     }
+
+
 }

@@ -1,8 +1,11 @@
 package app.isa.controller;
 
 
+import app.isa.domain.dto.DTO.AppointmentDTO;
 import app.isa.domain.dto.DTO.BoatAppointmentDTO;
+import app.isa.domain.dto.converters.AppointmentConverter;
 import app.isa.domain.dto.converters.BoatAppointmentConverter;
+import app.isa.domain.model.Appointment;
 import app.isa.domain.model.BoatAppointment;
 import app.isa.service.BoatAppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +46,15 @@ public class BoatAppointmentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(BoatAppointmentConverter.toDTO(boatAppointment),HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/action/{id}")
+    public  ResponseEntity<BoatAppointmentDTO> reservAction(@PathVariable Long id){
+        BoatAppointment appointment = boatAppointmentService.reservAction(id);
+
+        if(appointment == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return  new ResponseEntity<BoatAppointmentDTO>(BoatAppointmentConverter.toDTO(appointment), HttpStatus.CREATED);
     }
 }
