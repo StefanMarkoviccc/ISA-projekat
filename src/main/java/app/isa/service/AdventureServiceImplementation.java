@@ -73,8 +73,8 @@ public class AdventureServiceImplementation implements AdventureService {
         adventure.get().setRules(adventure1.getRules());
         adventure.get().setFishingEquipment(adventure1.getFishingEquipment());
         adventure.get().setPrice(adventure1.getPrice());
-        adventure.get().setIsFreeCancelation(adventure1.getIsFreeCancelation());
-        adventure.get().setCancelationPercent(adventure1.getCancelationPercent());
+       // adventure.get().setIsFreeCancelation(adventure1.getIsFreeCancelation());
+       // adventure.get().setCancelationPercent(adventure1.getCancelationPercent());
 
         return adventureRepository.save(adventure.get());
     }
