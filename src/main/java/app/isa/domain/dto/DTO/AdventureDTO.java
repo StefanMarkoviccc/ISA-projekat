@@ -29,9 +29,9 @@ public class AdventureDTO extends BaseDTO {
 
     protected String fishingEquipment;
 
-    protected Boolean isFreeCancelation;
+   // protected Boolean isFreeCancelation;
 
-    protected Double cancelationPercent;
+    //protected Double cancelationPercent;
 
     protected Double price;
 

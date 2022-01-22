@@ -35,9 +35,9 @@ public class Adventure  extends BaseEntity {
 
     protected String adventurePictures;
 
-    protected Boolean isFreeCancelation;
+    //protected Boolean isFreeCancelation;
 
-    protected Double cancelationPercent;
+    //protected Double cancelationPercent;
 
 
 
