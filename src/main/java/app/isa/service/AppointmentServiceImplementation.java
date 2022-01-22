@@ -15,6 +15,8 @@ import app.isa.repository.RoomRepository;
 import app.isa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.nio.channels.CancelledKeyException;
@@ -47,6 +49,8 @@ public class AppointmentServiceImplementation implements AppointmentService{
     @Autowired
     private EmailService emailService;
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
     public Appointment add(AppointmentDTO appointmentDTO){
         Appointment appointment = AppointmentConverter.fromDTO(appointmentDTO);
         Optional<House> house = houseRepository.findById(appointmentDTO.getHouseId());
