@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BoatAppointmentServiceImplementation implements BoatAppointmentService{
@@ -65,6 +62,19 @@ public class BoatAppointmentServiceImplementation implements BoatAppointmentServ
 
 
         return boatAppointmentRepository.save(appointment.get());
+    }
+    @Override
+    public List<BoatAppointment> getActionsByBoat(Long id) {
+
+        List<BoatAppointment> actions = new ArrayList<BoatAppointment>();
+
+        for (BoatAppointment a: boatAppointmentRepository.getAllByBoatAndDeleted(boatRepository.findById(id).get(), false)){
+            if(a.isAction())
+            {
+                actions.add(a);
+            }
+        }
+        return actions;
     }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)

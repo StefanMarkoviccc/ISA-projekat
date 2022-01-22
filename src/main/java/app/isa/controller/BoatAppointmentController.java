@@ -28,6 +28,12 @@ public class BoatAppointmentController {
         return new ResponseEntity<List<BoatAppointmentDTO>>(BoatAppointmentConverter.toDTOList(boatAppointmentService.getList()), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/actions/{id}")
+    public ResponseEntity<List<BoatAppointmentDTO>> getActions(Long id){
+        return new ResponseEntity<List<BoatAppointmentDTO>>(BoatAppointmentConverter.toDTOList(boatAppointmentService.getActionsByBoat(id)), HttpStatus.OK);
+
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<BoatAppointmentDTO> getBoatAppointments(@PathVariable Long id){
 
